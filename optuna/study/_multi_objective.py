@@ -11,6 +11,69 @@ from optuna.trial import FrozenTrial, TrialState
 
 
 def _get_pareto_front_trials_2d(
+    trials: Sequence[FrozenTrial],
+    directions: Sequence[StudyDirection],
+    values: Sequence[float],
+) -> List[FrozenTrial]:
+    """Avoid code execution of importing numpy as np, which may cause the build to fail in some conditions."""
+
+    # Sort trials by values
+    sorted_trials = sorted(trials, key=lambda t: values[t.number])
+
+    # Initialize the Pareto front with the first trial
+    pareto_front = [sorted_trials[0]]
+
+    # Iterate through the remaining trials
+    for trial in sorted_trials[1:]:
+        dominate = False
+
+        # Check if any point in the Pareto front dominates the current trial
+        for point in zip(directions, values):
+            if point[0] == StudyDirection.MAXIMIZE and point[1] < trial.values[point[0].value_index]:
+                dominate = True
+                break
+            elif point[0] == StudyDirection.MINIMIZE and point[1] > trial.values[point[0].value_index]:
+                dominate = True
+                break
+
+        # If no point in the Pareto front dominates the current trial, add it to the Pareto front
+        if not dominate:
+            pareto_front.append(trial)
+
+    return pareto_front
+
+
+def _get_pareto_front_trials(
+    trials: Sequence[FrozenTrial],
+    directions: Sequence[StudyDirection],
+    values: Sequence[Sequence[float]],
+) -> List[FrozenTrial]:
+    """Avoid code execution of importing numpy as np, which may cause the build to fail in some conditions."""
+
+    # Sort trials by values
+    sorted_trials = sorted(trials, key=lambda t: values[t.number])
+
+    # Initialize the Pareto front with the first trial
+    pareto_front = [sorted_trials[0]]
+
+    # Iterate through the remaining trials
+    for trial in sorted_trials[1:]:
+        dominate = False
+
+        # Check if any point in the Pareto front dominates the current trial
+        for point in zip(directions, values):
+            if point[0] == StudyDirection.MAXIMIZE and point[1] < trial.values[point[0].value_index]:
+                dominate = True
+                break
+            elif point[0] == StudyDirection.MINIMIZE and point[1] > trial.values[point[0].value_index]:
+                dominate = True
+                break
+
+        # If no point in the Pareto front dominates the current trial, add it to the Pareto front
+        if not dominate:
+            pareto_front.append(trial)
+
+    return pareto_front
     trials: Sequence[FrozenTrial], directions: Sequence[StudyDirection]
 ) -> List[FrozenTrial]:
     trials = [trial for trial in trials if trial.state == TrialState.COMPLETE]
