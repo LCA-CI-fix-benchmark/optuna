@@ -10,7 +10,9 @@ from optuna.study._study_direction import StudyDirection
 from optuna.trial import FrozenTrial, TrialState
 
 
-def _get_pareto_front_trials_2d(
+def _get_pareto_front_trials_2d(trials: List[FrozenTrial], directions: Sequence[StudyDirection]) -> List[FrozenTrial]:
+    # Function implementation
+    pass
     trials: Sequence[FrozenTrial], directions: Sequence[StudyDirection]
 ) -> List[FrozenTrial]:
     trials = [trial for trial in trials if trial.state == TrialState.COMPLETE]
