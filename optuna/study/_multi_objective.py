@@ -8,6 +8,23 @@ import numpy as np
 import optuna
 from optuna.study._study_direction import StudyDirection
 from optuna.trial import FrozenTrial, TrialState
+```
+
+Here is the corrected ordering:
+
+```python
+CODE: [start of optuna/study/_multi_objective.py#L1]
+from __future__ import annotations
+
+from collections import defaultdict
+from typing import List, Optional, Sequence
+
+import numpy as np
+from optuna import study
+from optuna.trial import FrozenTrial, TrialState
+
+import optuna
+from optuna.study._study_direction import StudyDirection
 
 
 def _get_pareto_front_trials_2d(
