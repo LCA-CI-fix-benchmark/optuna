@@ -1,13 +1,10 @@
 name: Sphinx
 
-on:
-  push:
-    branches:
-      - master
-  pull_request: {}
+on: push
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/master' && github.run_number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/master' && github.run_number
+    || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -58,13 +55,13 @@ jobs:
       with:
         name: built-html
         path: |
-            docs/build/html
+          docs/build/html
 
     - uses: actions/upload-artifact@v3
       with:
         name: tutorial
         path: |
-            docs/source/tutorial
+          docs/source/tutorial
 
   doctest:
 
