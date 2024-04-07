@@ -1,8 +1,5 @@
 from __future__ import annotations
 
-from collections import defaultdict
-from typing import List, Optional, Sequence
-
 import numpy as np
 
 import optuna
