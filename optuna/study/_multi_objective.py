@@ -5,12 +5,11 @@ from typing import List, Optional, Sequence
 
 import numpy as np
 
-import optuna
+-import optuna
++import optuna # Move optuna import to the top
 from optuna.study._study_direction import StudyDirection
 from optuna.trial import FrozenTrial, TrialState
 
-
-def _get_pareto_front_trials_2d(
     trials: Sequence[FrozenTrial], directions: Sequence[StudyDirection]
 ) -> List[FrozenTrial]:
     trials = [trial for trial in trials if trial.state == TrialState.COMPLETE]
