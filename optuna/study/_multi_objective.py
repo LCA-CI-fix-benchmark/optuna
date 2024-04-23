@@ -1,4 +1,34 @@
-from __future__ import annotations
+ffrom collections import defaultdict
+from typing import List, Optional, Sequence
+
+import numpy as np
+
+import optuna
+from optuna.study._study_direction import StudyDirection
+from optuna.trial import FrozenTrial, TrialState
+
+
+def _normalize_value(value: float, direction: StudyDirection) -> float:
+    if direction == StudyDirection.MAXIMIZE:
+        return value
+    return -value
+
+
+def _get_pareto_front_trials_2d(
+    trials: Sequence[FrozenTrial], directions: Sequence[StudyDirection]
+) -> List[FrozenTrial]:
+    trials = [trial for trial in trials if trial.state == TrialState.COMPLETE]
+
+    n_trials = len(trials)
+    if n_trials == 0:
+        return []
+
+    trials.sort(
+        key=lambda trial: (
+            _normalize_value(trial.values[0], directions[0]),
+            _normalize_value(trial.values[1], directions[1]),
+        ),
+    )ations
 
 from collections import defaultdict
 from typing import List, Optional, Sequence
