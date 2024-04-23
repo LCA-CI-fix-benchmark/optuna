@@ -2,7 +2,9 @@ import json
 import time
 from typing import Any
 from typing import Dict
-from typing import List
+from t### Context:
+You need to make the required edits to the file optuna/storages/_journal/redis.py containing the code snippet below:
+import List
 from typing import Optional
 
 from optuna._experimental import experimental_class

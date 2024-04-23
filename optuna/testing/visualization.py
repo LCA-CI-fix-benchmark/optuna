@@ -1,4 +1,6 @@
-from optuna import Study
+from optuna im### Context:
+You need to make the required edits to the file optuna/testing/visualization.py containing the code snippet below:
+Study
 from optuna.distributions import FloatDistribution
 from optuna.study import create_study
 from optuna.trial import create_trial

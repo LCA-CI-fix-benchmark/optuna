@@ -1,5 +1,7 @@
 #!/bin/bash
-# As described in `CONTRIBUTING.md`, this script checks and formats Optuna's source codes by
+# As described in `CONT### Context:
+You need to make the required edits to the file formats.sh containing the code snippet below:
+this script checks and formats Optuna's source codes by
 # `black`, `blackdoc`, and `isort`. If you pass `-n` as an option, this script checks codes
 # without updating codebase.
 

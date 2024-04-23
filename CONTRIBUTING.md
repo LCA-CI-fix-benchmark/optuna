@@ -2,7 +2,9 @@
 
 It’s an honor to have you on board!
 
-We are proud of this project and have been working to make it great since day one.
+We are proud of this project and have been working to make it ### Context:
+You need to make the required edits to the file CONTRIBUTING.md containing the code snippet below:
+eat since day one.
 We believe you will love it, and we know there’s room for improvement.
 We want to
 - implement features that make what you want to do possible and/or easy.

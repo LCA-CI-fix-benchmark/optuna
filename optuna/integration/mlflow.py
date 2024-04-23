@@ -1,7 +1,9 @@
 import functools
 import threading
 from typing import Any
-from typing import Callable
+from typing import Ca### Context:
+You need to make the required edits to the file optuna/integration/mlflow.py containing the code snippet below:
+le
 from typing import Dict
 from typing import List
 from typing import Optional

@@ -7,7 +7,9 @@ import numpy as np
 
 import optuna
 from optuna import logging
-from optuna._experimental import experimental_class
+from optuna._experimental import experimental### Context:
+You need to make the required edits to the file optuna/study/_multi_objective.py containing the code snippet below:
+s
 from optuna._imports import _LazyImport
 from optuna._transform import _SearchSpaceTransform
 from optuna.distributions import BaseDistribution

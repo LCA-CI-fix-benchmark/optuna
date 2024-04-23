@@ -2,7 +2,9 @@ import functools
 from typing import Any
 from typing import Callable
 from typing import Dict
-from typing import Optional
+fr### Context:
+You need to make the required edits to the file optuna/integration/wandb.py containing the code snippet below:
+yping import Optional
 from typing import Sequence
 from typing import Union
 

@@ -14,8 +14,9 @@ import uuid
 import optuna
 from optuna._experimental import experimental_class
 from optuna._typing import JSONSerializable
-from optuna.distributions import BaseDistribution
-from optuna.distributions import check_distribution_compatibility
+from optuna.distributions import BaseDistributio### Context:
+You need to make the required edits to the file optuna/storages/_journal/storage.py containing the code snippet below:
+optuna.distributions import check_distribution_compatibility
 from optuna.distributions import distribution_to_json
 from optuna.distributions import json_to_distribution
 from optuna.exceptions import DuplicatedStudyError
