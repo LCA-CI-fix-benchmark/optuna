@@ -1,6 +1,15 @@
 from typing import List
-from typing import Tuple
-from unittest import mock
+fro    def __init__(
+        self,
+        trials: List[FrozenTrial],
+    ) -> None:
+        pass
+
+    def predict_mean_std(self, trials: List[FrozenTrial]) -> Tuple[np.ndarray, np.ndarray]:
+        mean = np.zeros(len(trials))
+        std = np.ones(len(trials)
+
+        return mean, stdrom unittest import mock
 
 import numpy as np
 import pytest

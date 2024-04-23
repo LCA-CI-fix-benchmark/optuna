@@ -13,8 +13,28 @@ from typing import Union
 
 from optuna import logging
 from optuna import multi_objective
-from optuna._deprecated import deprecated_class
-from optuna._deprecated import deprecated_func
+from optuna._deprecated impor    def enqueue_trial(self, params: Dict[str, Any]) -> None:
+        """Enqueue a trial with given parameter values.
+
+        You can fix the next sampling parameters which will be evaluated in your
+        objective function.
+
+        Please refer to the documentation of :func:`optuna.study.Study.enqueue_trial`
+        for further details.
+
+        Args:
+            params:
+                Parameter values to pass your objective function.
+        """
+        self._study.enqueue_trial(params, skip_if_exists=False)
+
+    @property
+    def trials(self) -> List["multi_objective.trial.FrozenMultiObjectiveTrial"]:
+        """Return all trials in the study.
+
+        The returned trials are ordered by trial number.
+
+        This is a short form of ``self.get_trials(deepcopy=True, states=None)``.tuna._deprecated import deprecated_func
 from optuna.pruners import NopPruner
 from optuna.storages import BaseStorage
 from optuna.study import create_study as _create_study

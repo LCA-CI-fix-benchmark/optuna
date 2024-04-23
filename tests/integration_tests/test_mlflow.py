@@ -9,7 +9,30 @@ import py
 import pytest
 
 import optuna
-from optuna._imports import try_import
+from opdef test_tag_truncation(tmpdir: py.path.local) -> None:
+    # Set up the test environment
+    tracking_uri = f"file:{tmpdir}"
+    study_name = "my_study"
+    n_trials = 3
+
+    # Initialize MLflowCallback and Optuna study
+    mlflc = MLflowCallback(tracking_uri=tracking_uri)
+    study = optuna.create_study(study_name=study_name)
+    
+    # Optimize the study with the objective function and MLflowCallback
+    study.optimize(objective_func, n_trials=n_trials, callbacks=[mlflc])
+
+    # Check the MLflow experiments and runs
+    mlfl_client = MlflowClient(tracking_uri)
+    experiments = mlfl_client.search_experiments()
+    assert len(experiments) == 1
+
+    experiment = experiments[0]
+    assert experiment.name == study_name
+    experiment_id = experiment.experiment_id
+
+    runs = mlfl_client.search_runs(experiment_id)
+    assert len(runs) == n_trialsy_import
 from optuna.integration.mlflow import MLflowCallback
 
 

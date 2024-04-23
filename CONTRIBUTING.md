@@ -2,7 +2,10 @@
 
 It’s an honor to have you on board!
 
-We are proud of this project and have been working to make it great since day one.
+We are proud of this project and have been Extracting the files in the zip to `docs/source/tutorial` directory.
+Note that the CI runs with Python 3.8 and the generated artifacts contain pickle files.
+The pickle files are serialized with [the protocol version 5](https://docs.python.org/3/library/pickle.html#data-stream-format), so you will see the error with Python 3.7 or older.
+Please use Python 3.8 or later if you build the documentation with artifacts.ng to make it great since day one.
 We believe you will love it, and we know there’s room for improvement.
 We want to
 - implement features that make what you want to do possible and/or easy.
