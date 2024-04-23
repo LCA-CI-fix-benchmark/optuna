@@ -2,7 +2,7 @@ import functools
 from typing import Any
 from typing import Callable
 from typing import Dict
-from typing import Optional
+frIf a siCreates new runs for each trial. Useful for generating W&B Sweeps like panels (for ex., parameter importance, parallel coordinates, etc). name is provided or this argument is left at the default value, it will be broadcasted to each objective with a number suffix in the order returned by the objective function. For example, two objectives and the default metric name will be logged as "value_0" and "value_1". The number of metrics must be specified.yping import Optional
 from typing import Sequence
 from typing import Union
 

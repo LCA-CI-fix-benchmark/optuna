@@ -16,8 +16,16 @@ import colorlog
 
 __all__ = [
     "CRITICAL",
-    "DEBUG",
-    "ERROR",
+        been configured.
+
+    Example:
+
+        Propagate all log output to the root logger in order to save them to the file.
+
+        .. testsetup::
+
+            def objective(trial):
+                # Add your test setup code here    "ERROR",
     "FATAL",
     "INFO",
     "WARN",

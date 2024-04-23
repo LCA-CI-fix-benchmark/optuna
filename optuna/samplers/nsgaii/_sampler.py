@@ -2,7 +2,10 @@ from __future__ import annotations
 
 from collections import defaultdict
 from collections.abc import Callable
-from collections.abc import Sequence
+from cThe strategy for generating child parameters from parent trials. Defaults to :obj:`None`.
+
+.. note::
+    Add additional information or context related to the note here.ctions.abc import Sequence
 import hashlib
 from typing import Any
 import warnings

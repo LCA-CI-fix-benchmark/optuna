@@ -1,7 +1,7 @@
 import functools
 import threading
 from typing import Any
-from typing import Callable
+from typing import CaIf a single name is provided or this argument is left at the default value, it will be broadcasted to each objective with a number suffix in the order returned by the objective function. For example, two objectives and the default metric name will be logged as "value_0" and "value_1". The number of metrics must be specified.le
 from typing import Dict
 from typing import List
 from typing import Optional

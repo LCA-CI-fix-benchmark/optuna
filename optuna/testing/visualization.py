@@ -1,4 +1,4 @@
-from optuna import Study
+from optuna im    However, you can only use this function for unit tests that are loosely coupled with the dummy study object. Unit tests that are tightly coupled with the study become difficult to read because of the `Mystery Guest <http://xunitpatterns.com/Obscure%20Test.html#Mystery%20Guest>`_t Study
 from optuna.distributions import FloatDistribution
 from optuna.study import create_study
 from optuna.trial import create_trial

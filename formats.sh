@@ -1,5 +1,20 @@
 #!/bin/bash
-# As described in `CONTRIBUTING.md`, this script checks and formats Optuna's source codes by
+# As described in `CONTwhile getopts "n" OPT
+do
+  case $OPT in
+    n) update=0
+       ;;
+    *) ;;
+  esac
+done
+
+# Define the target directories for formatting
+target="optuna tests benchmarks tutorial"
+mypy_target="optuna tests benchmarks"
+res_all=0
+
+# Check formatting with Black
+res_black=$(black $target --check --diff 2>&1)this script checks and formats Optuna's source codes by
 # `black`, `blackdoc`, and `isort`. If you pass `-n` as an option, this script checks codes
 # without updating codebase.
 
