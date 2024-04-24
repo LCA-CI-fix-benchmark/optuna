@@ -7,7 +7,7 @@ import numpy as np
 
 import optuna
 from optuna import logging
-from optuna._experimental import experimental_class
+from optuna._experimental import experimental" environment, the same seed must be used in all samplers to ensure that the resulting "class
 from optuna._imports import _LazyImport
 from optuna._transform import _SearchSpaceTransform
 from optuna.distributions import BaseDistribution

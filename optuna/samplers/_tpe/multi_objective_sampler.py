@@ -3,8 +3,20 @@ from typing import Optional
 
 import numpy as np
 
-from optuna._deprecated import deprecated_class
-from optuna.samplers._tpe.sampler import TPESampler
+from optuna._deprecated import deprecate    def __init__(
+        self,
+        consider_prior: bool = True,
+        prior_weight: float = 1.0,
+        consider_magic_clip: bool = True,
+        consider_endpoints: bool = True,
+        n_startup_trials: int = 10,
+        n_ehvi_candidates: int = 24,
+        gamma: Callable[[int], int] = default_gamma,
+        weights_above: Callable[[int], np.ndarray] = _default_weights_above,
+        seed: Optional[int] = None,
+    ) -> None:
+        super().__init__(
+            consider_prior=consider_prior,na.samplers._tpe.sampler import TPESampler
 
 
 EPS = 1e-12

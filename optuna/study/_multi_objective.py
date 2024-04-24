@@ -1,4 +1,82 @@
-from __future__ import annotations
+ffrom collections import defaultdict
+from typing import List, Optional, Sefrom collections import defaultdict
+from typing import List, Optional, Sequence
+
+import from collections import defaultdict
+from tif len(set(len(trial.values) for trial in trials)) != 1:
+    raise ValueError("Trials with different numbers of objectives cannot be compared.")ping import List, Optional, Sequence
+
+import numpy as np
+
+import optuna
+from optuna.study._study_direction import StudyDirection
+from optuna.trial import FrozenTrial, TrialState
+
+
+def _get_pareto_front_trials_2d(
+    trials: Sequence[FrozenTrial], directions: Sequence[StudyDirection]
+) -> List[FrozenTrial]:
+    trials = [trial for trial in trials if trial.state == TrialState.COMPLETE]
+    
+    pareto_front_trials = []
+    for trial in trials:
+        is_pareto = True
+        for other_trial in trials:
+            if all(
+                direction.check_new_values(
+                    trial.values[i], other_trial.values[i]
+                )
+                for i, direction in enumerate(directions)
+            ):
+                is_pareto = False
+                break
+        if is_pareto:
+            pareto_front_trials.append(trial)
+    
+    return pareto_front_trialsumpy as np
+
+import optuna
+from optuna.study._study_direction import StudyDirection
+from optuna.trial import FrozenTrial, TrialState
+
+
+def _get_pareto_front_trials_2d(
+    trials: Sequence[FrozenTrial], directions: Sequence[StudyDirection]
+) -> List[FrozenTrial]:
+    trials = [trial for trial in trials if trial.state == TrialState.COMPLETE]
+    
+    pareto_front_trials = []
+    for trial in trials:
+        is_pareto = True
+        for other_trial in trials:
+            if all(
+                direction.check_new_values(
+                    trial.values[i], other_trial.values[i]
+                )
+                for i, direction in enumerate(directions)
+            ):
+                is_pareto = False
+                break
+        if is_pareto:
+            pareto_front_trials.append(trial)
+    
+    return pareto_front_trialsuence
+
+import numpy as np
+
+import optuna
+from optuna.study._study_direction import StudyDirection
+from optuna.trial import FrozenTrial, TrialState
+
+
+def _get_pareto_front_trials_2d(
+    trials: Sequence[FrozenTrial], directions: Sequence[StudyDirection]
+) -> List[FrozenTrial]:
+    trials = [trial for trial in trials if trial.state == TrialState.COMPLETE]
+    
+    # Add logic for identifying Pareto front trials here
+    
+    return pareto_front_trialsimport annotations
 
 from collections import defaultdict
 from typing import List, Optional, Sequence
