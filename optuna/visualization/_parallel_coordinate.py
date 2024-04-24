@@ -10,8 +10,27 @@ from typing import NamedTuple
 import numpy as np
 
 from optuna.logging import get_logger
-from optuna.study import Study
-from optuna.trial import FrozenTrial
+from optuna.study    if numeric_cat_params_indices:
+        dims.insert(0, dim_objective)
+        # Sort the values based on the numeric categorical parameters indices in reverse order.
+        idx = np.lexsort([dims[index].values for index in numeric_cat_params_indices][::-1])
+        
+        updated_dims = []
+        for dim in dims:
+            # Update the values based on the sorted index of numeric categorical parameters.
+            updated_dims.append(
+                _DimensionInfo(
+                    label=dim.label,
+                    values=tuple(np.array(dim.values)[idx]),
+                    range=dim.range,
+                    is_log=dim.is_log,
+                    is_cat=dim.is_cat,
+                    tickvals=dim.tickvals,
+                    ticktext=dim.ticktext,
+                )
+            )
+        
+        dim_objective = updated_dims[0]una.trial import FrozenTrial
 from optuna.trial import TrialState
 from optuna.visualization._plotly_imports import _imports
 from optuna.visualization._utils import _check_plot_args

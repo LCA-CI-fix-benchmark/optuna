@@ -1,5 +1,35 @@
-from typing import Callable
-from typing import Optional
+ffrom typing import Optional
+
+import numpy as np
+
+from optuna._deprecated import deprecated_class
+from optuna.samplers._tpe.sampler import TPESampler
+
+EPS = 1e-12
+
+def default_gamma(x: int) -> int:
+    return int(np.floor(0.1 * x))
+
+def _default_weights_above(x: int) -> np.ndarray:
+    return np.ones(x)
+
+@deprecated_class("2.9.0", "4.0.0", substitute="TPESampler")
+class MOTPESampler(TPESampler):
+    """Multi-objective sampler using the MOTPE algorithm.
+
+    This sampler is a multi-objective version of :class:`~optuna.samplers.TPESampler`.
+
+    .. note::
+        For `v2.9.0 <https://github.com/optuna/optuna/releases/tag/v2.9.0>`_ or later,
+        :class:`~optuna.samplers.MOTPESampler` is deprecated and
+        :class:`~optuna.samplers.TPESampler` should be used instead. 
+        To apply :class:`~optuna.samplers.TPESampler` to a multi-objective task, you can follow the example below:
+
+        .. testcode::
+
+            import optuna
+
+            def objective(trial):g import Optional
 
 import numpy as np
 

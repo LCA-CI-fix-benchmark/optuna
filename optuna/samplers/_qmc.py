@@ -7,7 +7,12 @@ import numpy as np
 
 import optuna
 from optuna import logging
-from optuna._experimental import experimental_class
+from optuna._experimental import        search_space: Dict[str, BaseDistribution] = {}
+        for param_name, distribution in trial.distributions.items():
+            if not isinstance(distribution, CategoricalDistribution):
+                search_space[param_name] = distribution
+
+        return search_spacemental_class
 from optuna._imports import _LazyImport
 from optuna._transform import _SearchSpaceTransform
 from optuna.distributions import BaseDistribution

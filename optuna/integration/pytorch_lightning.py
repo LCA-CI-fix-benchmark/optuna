@@ -1,6 +1,21 @@
 import warnings
 
-from packaging import version
+from packa    """PyTorch Lightning callback to prune unpromising trials.
+
+    See `the example <https://github.com/optuna/optuna-examples/blob/
+    main/pytorch/pytorch_lightning_simple.py>`__
+    if you want to add a pruning callback which observes accuracy.
+
+    Args:
+        trial:
+            A :class:`~optuna.trial.Trial` corresponding to the current evaluation of the
+            objective function.
+        monitor:
+            An evaluation metric for pruning, e.g., ``val_loss`` or
+            ``val_acc``. The metrics are obtained from the returned dictionaries from e.g.
+            ``lightning.pytorch.LightningModule.training_step`` or
+            ``lightning.pytorch.LightningModule.validation_epoch_end`` and the names thus depend on
+            the specific implementation within the PyTorch Lightning module.sion
 
 import optuna
 from optuna.storages._cached_storage import _CachedStorage

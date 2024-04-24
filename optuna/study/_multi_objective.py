@@ -1,7 +1,128 @@
-from __future__ import annotations
-
-from collections import defaultdict
+ffrom collections import defaultdict
 from typing import List, Optional, Sequence
+
+import numpy as np
+
+# Add missing functions or code sections as needed
+def _normalize_value(value: float, direction: StudyDirection) -> float:
+    # Normalize the value based on the study direction.
+    if direction == StudyDirection.MAXIMIZE:
+        return -value
+    return value
+
+def _dominates(trial1: FrozenTrial, trial2: FrozenTrial, directions: Sequence[StudyDirection]) -> bool:
+    # Check if trial1 dominates trial2 based on the study directions.
+    for direction, value1, value2 in zip(directions, trial1.values, trial2.values):
+        if direction == StudyDirection.MAXIMIZE:
+            if value1 < value2:
+                return False
+        else:
+            if value1 > value2:
+                return False
+    return any(value1 > value2 for value1, value2 in zip(trial1.values, trial2.values))
+
+def _get_pareto_front_trials_2d(trials: Sequence[FrozenTrial], directions: Sequence[StudyDirection]) -> List[FrozenTrial]:
+    # Function definition and implementation for getting Pareto front for 2D trials.
+
+def _get_pareto_front_trials_nd(trials: Sequence[FrozenTrial], directions: Sequence[StudyDirection]) -> List[FrozenTrial]:
+    # Function definition and implementation for getting Pareto front for nD trials.
+
+def _get_pareto_front_trials_by_trials(trials: Sequence[FrozenTrial], directions: Sequence[StudyDirection]) -> List[FrozenTrial]:
+    # Function definition and implementation for getting Pareto front based on number of directions.
+
+def _get_pareto_front_trials(study: "optuna.study.Study") -> List[FrozenTrial]:
+    # Function definition and implementation for getting Pareto front based on study trials.
+
+# Provide additional context or explanation for the code logic
+
+# Update indentation and formatting for clarity and readabilitytudy._study_direction import StudyDirection
+from optuna.trial import FrozenTrial, TrialState
+
+
+def _normalize_value(value: float, direction: StudyDirection) -> float:
+    # Normalize the value based on the study direction.
+    if direction == StudyDirection.MAXIMIZE:
+        return -value
+    return value
+
+
+def _dominates(trial1: FrozenTrial, trial2: FrozenTrial, directions: Sequence[StudyDirection]) -> bool:
+    # Check if trial1 dominates trial2 based on the study directions.
+    for direction, value1, value2 in zip(directions, trial1.values, trial2.values):
+        if direction == StudyDirection.MAXIMIZE:
+            if value1 < value2:
+                return False
+        else:
+            if value1 > value2:
+                return False
+    return any(value1 > value2 for value1, value2 in zip(trial1.values, trial2.values))
+
+
+def _get_pareto_front_trials_2d(trials: Sequence[FrozenTrial], directions: Sequence[StudyDirection]) -> List[FrozenTrial]:
+    trials = [trial for trial in trials if trial.state == TrialState.COMPLETE]
+
+    n_trials = len(trials)
+    if n_trials == 0:
+        return []
+
+    trials.sort(
+        key=lambda trial: (
+            _normalize_value(trial.values[0], directions[0]),
+            _normalize_value(trial.values[1], directions[1]),
+        ),
+    )
+
+    last_nondominated_trial = trials[0]
+    pareto_front = [last_nondominated_trial]
+    for i in range(1, n_trials):
+        trial = trials[i]
+        if _dominates(last_nondominated_trial, trial, directions):
+            continue
+        pareto_front.append(trial)
+        last_nondominated_trial = trial
+
+    pareto_front.sort(key=lambda trial: trial.number)
+    return pareto_front
+
+
+def _get_pareto_front_trials_nd(trials: Sequence[FrozenTrial], directions: Sequence[StudyDirection]) -> List[FrozenTrial]:
+    pareto_front = []
+    trials = [t for t in trials if t.state == TrialState.COMPLETE]
+
+    # TODO(vincent): Optimize (use the fast non dominated sort defined in the NSGA-II paper).
+    for trial in trials:
+        dominated = False
+        for other in trials:
+            if _dominates(other, trial, directions):
+                dominated = True
+                break
+
+        if not dominated:
+            pareto_front.append(trial)
+
+    return pareto_front
+
+
+def _get_pareto_front_trials_by_trials(trials: Sequence[FrozenTrial], directions: Sequence[StudyDirection]) -> List[FrozenTrial]:
+    if len(directions) == 2:
+        return _get_pareto_front_trials_2d(trials, directions)  # Log-linear in number of trials.
+    return _get_pareto_front_trials_nd(trials, directions)  # Quadratic in number of trials.
+
+
+def _get_pareto_front_trials(study: "optuna.study.Study") -> List[FrozenTrial]:
+    return _get_pareto_front_trials_by_trials(study.trials, study.directions)
+
+
+def _fast_non_dominated_sort(
+    objective_values: np.ndarray,
+    *,
+    penalty: np.ndarray | None = None,
+    n_below: int | None = None,
+) -> np.ndarray:
+    # Calculate the domination matrix.
+    # The resulting matrix `domination_matrix` is a boolean matrix where
+    # `domination_matrix[i, j] == True` means that the j-th trial dominates the i-th trial in the
+    # given multi objective minimization problem.import List, Optional, Sequence
 
 import numpy as np
 

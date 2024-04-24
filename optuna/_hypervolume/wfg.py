@@ -2,7 +2,21 @@ from typing import Optional
 
 import numpy as np
 
-from optuna._hypervolume import _compute_2d
+from optuna._hypervolume im        # If the points in the solution set are completely sorted along all coordinates,
+        # the following procedures return the complete Pareto optimal points.
+        # For computational efficiency, we do not completely sort the points,
+        # but just sort the points according to their 0-th dimension.
+        if n_points_of_s <= 1:
+            return limited_solution_set
+        else:
+            # Assume limited_solution_set is sorted by its 0th dimension.
+            # Therefore, we can simply scan the limited solution set from left to right.
+            returned_limited_solution_set = [limited_solution_set[0]]
+            left = 0
+            right = 1
+            while right < n_points_of_s:
+                if any(limited_solution_set[left] > limited_solution_set[right]):
+                    left = rightd
 from optuna._hypervolume import _compute_2points_volume
 from optuna._hypervolume import BaseHypervolume
 

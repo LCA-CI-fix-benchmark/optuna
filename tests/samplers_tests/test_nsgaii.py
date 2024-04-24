@@ -17,7 +17,46 @@ import optuna
 from optuna._transform import _SearchSpaceTransform
 from optuna.distributions import BaseDistribution
 from optuna.distributions import CategoricalDistribution
-from optuna.distributions import FloatDistribution
+frodef _create_frozen_trial(number: int, values: list[float]) -> FrozenTrial:
+    # Define the function to create a FrozenTrial with the given number and values.
+    return FrozenTrial(
+        number=number,
+        values=values,
+        state=TrialState.COMPLETE,
+        datetime_start=datetime.now(),
+        datetime_complete=datetime.now(),
+        params={},
+        distributions={},
+        user_attrs={},
+        system_attrs={},
+        intermediate_values={},
+    )
+
+def _calc_crowding_distance(trials: list[FrozenTrial]) -> list[float]:
+    # Define the function to calculate the crowding distance for each trial in the list.
+    # Implementation logic for crowding distance calculation.
+
+def _crowding_distance_sort(trials: list[FrozenTrial]) -> None:
+    # Define the function to sort the trials based on their crowding distance.
+    # Implementation logic for sorting based on crowding distance.
+
+@pytest.mark.parametrize(
+    "values",
+    [
+        [[5], [6], [9], [0]],
+        [[5, 0], [6, 0], [9, 0], [0, 0]],
+        [[5, -1], [6, 0], [9, 1], [0, 2]],
+        [[1], [2], [float("inf")]],
+        [[float("-inf")], [1], [2]],
+    ],
+)
+def test_crowding_distance_sort(values: list[list[float]]) -> None:
+    """Checks that trials are sorted by the values of `_calc_crowding_distance`."""
+    trials = [_create_frozen_trial(number=i, values=value) for i, value in enumerate(values)]
+    crowding_dist = _calc_crowding_distance(trials)
+    _crowding_distance_sort(trials)
+    sorted_dist = [crowding_dist[t.number] for t in trials]
+    assert sorted_dist == sorted(sorted_dist, reverse=True)utions import FloatDistribution
 from optuna.distributions import IntDistribution
 from optuna.samplers import BaseSampler
 from optuna.samplers import NSGAIISampler

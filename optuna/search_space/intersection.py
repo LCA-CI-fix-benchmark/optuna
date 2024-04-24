@@ -5,7 +5,9 @@ from typing import Dict
 from typing import Tuple
 
 import optuna
-from optuna.distributions import BaseDistribution
+from optuna.distributi    search_space, _ = _calculate(trials, include_pruned)
+    search_space = search_space or {}
+    search_space = dict(sorted(search_space.items(), key=lambda x: x[0])) if search_space else {}ort BaseDistribution
 from optuna.study import Study
 
 

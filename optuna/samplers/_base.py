@@ -3,8 +3,28 @@ from typing import Any
 from typing import Callable
 from typing import Dict
 from typing import Optional
-from typing import Sequence
-import warnings
+from typi        by :func:`~optuna.samplers.BaseSampler.sample_relative` method. This method is suitable
+        for sampling algorithms that do not use the relationship between parameters such as random
+        sampling and TPE.
+
+        .. note::
+            The failed trials are ignored by any built-in samplers when they sample new
+            parameters. Thus, failed trials are regarded as deleted in the samplers'
+            perspective.
+
+        Args:
+            study:
+                Target study object.
+            trial:
+                Target trial object.
+                Take a copy before modifying this object.
+            param_name:
+                Name of the sampled parameter.
+            param_distribution:
+                Distribution object that specifies a prior and/or scale of the sampling algorithm.
+
+        Returns:
+            A parameter value.ort warnings
 
 import numpy as np
 
