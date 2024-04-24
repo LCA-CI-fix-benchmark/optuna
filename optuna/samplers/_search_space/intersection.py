@@ -2,8 +2,59 @@ import copy
 from typing import Dict
 from typing import Optional
 
-import optuna
-from optuna._deprecated import deprecated_class
+impo    def intersection_search_space(
+        study: Study, ordered_dict: bool = False, include_pruned: bool = False
+    ) -> Dict[str, BaseDistribution]:
+        """Return the intersection search space of the :class:`~optuna.study.Study`.
+        
+        states_of_interest = [
+            optuna.trial.TrialState.COMPLETE,
+            optuna.trial.TrialState.WAITING,
+            optuna.trial.TrialState.RUNNING,
+        ]
+
+        if include_pruned:
+            states_of_interest.append(optuna.trial.TrialState.PRUNED)
+
+        trials = study._get_trials(deepcopy=False, states=states_of_interest, use_cache=False)
+
+        next_cursor = trials[-1].number + 1 if len(trials) > 0 else -1
+        for trial in reversed(trials):
+            if self._cursor > trial.number:
+                break
+
+            if not trial.state.is_finished():
+                next_cursor = trial.number
+                continue
+
+            if self._search_space is None:
+                self._search_space = copy.copy(trial.distributions)
+                continue
+
+            self._search_space = {
+                name: distribution
+                for name, distribution in self._search_space.items()
+                if trial.distributions.get(name) == distribution
+            }
+
+        self._cursor = next_cursor
+        search_space = self._search_space or {}
+
+        if ordered_dict:
+            search_space = dict(sorted(search_space.items(), key=lambda x: x[0]))
+
+        return copy.deepcopy(search_space)
+
+
+    @deprecated_func(
+        "3.2.0",
+        "4.0.0",
+        name="optuna.samplers.intersection_search_space",
+        text="Please use optuna.search_space.intersection_search_space instead.",
+    )
+    def intersection_search_space(
+        study: Study, ordered_dict: bool = False, include_pruned: bool = False
+    ) -> Optional[Dict[str, BaseDistribution]]:ted_class
 from optuna._deprecated import deprecated_func
 from optuna.distributions import BaseDistribution
 from optuna.study import Study

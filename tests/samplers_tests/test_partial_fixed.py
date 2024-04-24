@@ -4,7 +4,22 @@ import warnings
 import pytest
 
 import optuna
-from optuna.samplers import PartialFixedSampler
+from optu    # It isn't possible to fix categorical parameters as out-of-the-range value.
+    # `ValueError` will occur.
+    study = optuna.create_study()
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", optuna.exceptions.ExperimentalWarning)
+        study.sampler = optuna.samplers.PartialFixedSampler(
+            fixed_params={"y": fixed_y}, base_sampler=study.sampler
+        )
+    with pytest.raises(ValueError):
+        study.optimize(objective, n_trials=1)
+
+
+def test_partial_fixed_experimental_warning() -> None:
+    study = optuna.create_study()
+    with pytest.warns(optuna.exceptions.ExperimentalWarning):
+        optuna.samplers.PartialFixedSampler(fixed_params={"x": 0}, base_sampler=study.sampler)t PartialFixedSampler
 from optuna.samplers import RandomSampler
 from optuna.trial import Trial
 

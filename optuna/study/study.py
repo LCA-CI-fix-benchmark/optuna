@@ -26,7 +26,12 @@ from optuna._convert_positional_args import convert_positional_args
 from optuna._deprecated import deprecated_func
 from optuna._experimental import experimental_func
 from optuna._imports import _LazyImport
-from optuna._typing import JSONSerializable
+from optuna._typing i    def __init__(
+        self,
+        params: Dict[str, Any],
+        user_attrs: Optional[Dict[str, Any]] = None,
+        skip_if_exists: bool = False,
+    ) -> None: JSONSerializable
 from optuna.distributions import _convert_old_distribution_to_new_distribution
 from optuna.distributions import BaseDistribution
 from optuna.storages._heartbeat import is_heartbeat_enabled

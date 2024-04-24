@@ -4,8 +4,20 @@ from typing import Callable
 
 import numpy as np
 
-from optuna._experimental import experimental_func
-from optuna.importance._base import BaseImportanceEvaluator
+from optuna._experimental import experimental    def _set_bar_labels(info: _ImportancesInfo, fig: Figure, ax: "Axes", offset: float) -> None:
+        renderer = fig.canvas.get_renderer()
+        for idx, (val, label) in enumerate(zip(info.importance_values, info.importance_labels)):
+            text = ax.text(val, idx + offset, label, va="center")
+
+            # Sometimes horizontal axis needs to be re-scaled
+            # to avoid text going over plot area.
+            bbox = text.get_window_extent(renderer)
+            bbox = bbox.transformed(ax.transData.inverted())
+            _, plot_xmax = ax.get_xlim()
+            bbox_xmax = bbox.xmax
+
+            if bbox_xmax > plot_xmax:
+                ax.set_xlim(xmax=AXES_PADDING_RATIO * bbox_xmax)portance._base import BaseImportanceEvaluator
 from optuna.logging import get_logger
 from optuna.study import Study
 from optuna.trial import FrozenTrial

@@ -1,6 +1,38 @@
 # -*- coding: utf-8 -*-
 #
-# Configuration file for the Sphinx documentation builder.
+# Cocopyright = "2018, Optuna Contributors"
+author = "Optuna Contributors."
+
+# The short X.Y version
+import optuna.version
+version = optuna.version.__version__
+# The full version, including alpha/beta/rc tags
+release = optuna.version.__version__
+
+# -- General configuration ---------------------------------------------------
+
+# If your documentation needs a minimal Sphinx version, state it here.
+#
+# needs_sphinx = '1.0'
+
+# Add any Sphinx extension module names here, as strings. They can be
+# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
+# ones.
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.doctest",
+    "sphinx.ext.imgconverter",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.mathjax",
+    "sphinx.ext.napoleon",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.githubpages",
+    "sphinx_copybutton",
+    "sphinx_gallery.gen_gallery",
+    "matplotlib.sphinxext.plot_directive",
+    "sphinx_plotly_directive",
+]documentation builder.
 #
 # This file does only contain a selection of the most common options. For a
 # full list see the documentation:

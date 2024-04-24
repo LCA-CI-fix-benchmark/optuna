@@ -2,8 +2,22 @@ import functools
 import textwrap
 from typing import Any
 from typing import Callable
-from typing import Optional
-from typing import TYPE_CHECKING
+from typing impor            """
+
+            message = _DEPRECATION_WARNING_TEMPLATE.format(
+                name=(name if name is not None else func.__name__),
+                d_ver=deprecated_version,
+                r_ver=removed_version,
+            )
+            if text is not None:
+                message += " " + text
+            warnings.warn(message, FutureWarning, stacklevel=2)
+
+            return func(*args, **kwargs)
+
+        return wrapper
+
+    return decoratortyping import TYPE_CHECKING
 from typing import TypeVar
 import warnings
 

@@ -9,7 +9,29 @@ import py
 import pytest
 
 import optuna
-from optuna._imports import try_import
+from op# attributes that are too long. It should be fixed on MLflow side later.
+# When it is fixed on MLflow side this test can be removed.
+# see https://github.com/optuna/optuna/issues/1340
+# see https://github.com/mlflow/mlflow/issues/2931
+def test_tag_truncation(tmpdir: py.path.local) -> None:
+    tracking_uri = f"file:{tmpdir}"
+    study_name = "my_study"
+    n_trials = 3
+
+    mlflc = optuna.integration.MLflowCallback(tracking_uri=tracking_uri)
+    study = optuna.create_study(study_name=study_name)
+    study.optimize(_objective_func_long_user_attr, n_trials=n_trials, callbacks=[mlflc])
+
+    mlfl_client = MlflowClient(tracking_uri)
+    experiments = mlfl_client.search_experiments()
+    assert len(experiments) == 1
+
+    experiment = experiments[0]
+    assert experiment.name == study_name
+    experiment_id = experiment.experiment_id
+
+    runs = mlfl_client.search_runs(experiment_id)
+    assert len(runs) == n_trialsy_import
 from optuna.integration.mlflow import MLflowCallback
 
 

@@ -2,7 +2,13 @@
 
 Interested in measuring Optuna's performance? 
 You are very perceptive. 
-Under this directory, you will find scripts that we have prepared to measure Optuna's performance.
+Under this directory, you will find scrip![image](https://user-images.githubusercontent.com/37713008/156562987-dbaba38c-755c-448a-bc45-7aefb3fd8efd.png)
+
+See [this doc](https://bayesmark.readthedocs.io/en/stable/scoring.html) for more information on `bayesmark` scoring.
+
+### How to run locally
+
+CI runs benchmarks on all model/dataset combination in parallel, however running benchmark on single problem locally is possible. To do this, first install required Python packages. have prepared to measure Optuna's performance.
 
 In this document, we explain how we measure the performance of Optuna using the scripts in this directory.
 The contents of this document are organized as follows.

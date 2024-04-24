@@ -2,8 +2,17 @@ from typing import Any
 
 from packaging import version
 
-import optuna
-from optuna._deprecated import deprecated_class
+import op    def on_epoch_end(self, epoch: int, **kwargs: Any) -> None:
+        value = self.get_monitor_value()
+        if value is None:
+            return
+
+        # This conversion is necessary to avoid problems reported in issues.
+        # - [Issue 642](https://github.com/optuna/optuna/issue/642)
+        # - [Issue 655](https://github.com/optuna/optuna/issue/655)
+        self._trial.report(float(value), step=epoch)
+        if self._trial.should_prune():
+            message = "Trial was pruned at epoch {}.".format(epoch)_deprecated import deprecated_class
 from optuna._imports import try_import
 
 

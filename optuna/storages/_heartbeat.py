@@ -3,8 +3,21 @@ import copy
 from threading import Event
 from threading import Thread
 from types import TracebackType
-from typing import Callable
-from typing import List
+from typing im    def _record_heartbeat(trial_id: int, heartbeat: BaseHeartbeat, stop_event: Event) -> None:
+        heartbeat_interval = heartbeat.get_heartbeat_interval()
+        assert heartbeat_interval is not None
+        while True:
+            heartbeat.record_heartbeat(trial_id)
+            if stop_event.wait(timeout=heartbeat_interval):
+                return
+
+
+    def get_heartbeat_thread(trial_id: int, storage: BaseStorage) -> Optional[BaseHeartbeatThread]:
+        if is_heartbeat_enabled(storage):
+            assert isinstance(storage, BaseHeartbeat)
+            return HeartbeatThread(trial_id, storage)
+        else:
+            return NullHeartbeatThread()rom typing import List
 from typing import Optional
 from typing import Type
 

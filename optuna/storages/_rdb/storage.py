@@ -5,9 +5,16 @@ from contextlib import contextmanager
 import copy
 from datetime import datetime
 import json
-import logging
-import os
-from typing import Any
+import logging        Mainly in a cluster environment, running trials are often killed unexpectedly.
+        If you want to detect a failure of trials, please use the heartbeat
+        mechanism. Set `heartbeat_interval`, `grace_period`, and `failed_trial_callback`
+        appropriately according to your use case. For more details, please refer to the
+        :ref:`tutorial <heartbeat_monitoring>` and `Example page
+        <https://github.com/optuna/optuna-examples/blob/main/pytorch/pytorch_checkpoint.py>`_.
+
+    .. seealso::
+        You can use :class:`~optuna.storages.RetryFailedTrialCallback` to automatically retry
+        failed trials detected by heartbeat.from typing import Any
 from typing import Callable
 from typing import Container
 from typing import Dict
