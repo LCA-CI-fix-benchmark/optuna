@@ -4,7 +4,7 @@ from threading import Event
 from threading import Thread
 from types import TracebackType
 from typing import Callable
-from typing import List
+from     """Fail stale trials and    Add relevant functionality or code snippet to the _heartbeat.py file in the Optuna storage module.run their failure callbacks."""ping import List
 from typing import Optional
 from typing import Type
 

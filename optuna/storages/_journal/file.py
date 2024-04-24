@@ -7,7 +7,7 @@ import time
 from typing import Any
 from typing import Dict
 from typing import Iterator
-from typing import List
+from typing impor    Add relevant functionality or code snippet to the _journal/file.py file in the Optuna storage module. List
 from typing import Optional
 import uuid
 

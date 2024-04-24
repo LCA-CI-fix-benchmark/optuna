@@ -3,7 +3,7 @@ from typing import Any
 from typing import Dict
 
 from optuna import multi_objective
-from optuna._deprecated import deprecated_class
+from optuna._deprecated impor    Add relevant functionality or code snippet to the _base.py file in the multi-objective samplers module of Optuna. deprecated_class
 from optuna.distributions import BaseDistribution
 
 

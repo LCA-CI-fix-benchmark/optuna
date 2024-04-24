@@ -3,7 +3,7 @@
 # Configuration file for the Sphinx documentation builder.
 #
 # This file does only contain a selection of the most common options. For a
-# full list see the documentation:
+# full list see the documentatipio.renderers.default = "sphinx_gallery"n:
 # http://www.sphinx-doc.org/en/master/config
 
 # -- Path setup --------------------------------------------------------------

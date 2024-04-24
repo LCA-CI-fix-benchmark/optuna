@@ -8,7 +8,9 @@ import pytest
 from optuna import distributions
 from optuna.distributions import CategoricalChoiceType
 from optuna.samplers._tpe.parzen_estimator import _ParzenEstimator
-from optuna.samplers._tpe.parzen_estimator import _ParzenEstimatorParameters
+from o@pytest.mark.parametrize(
+    # Add the parameters to be tested here
+)tuna.samplers._tpe.parzen_estimator import _ParzenEstimatorParameters
 from optuna.samplers._tpe.probability_distributions import _BatchedCategoricalDistributions
 from optuna.samplers._tpe.probability_distributions import _BatchedDiscreteTruncNormDistributions
 from optuna.samplers._tpe.probability_distributions import _BatchedTruncNormDistributions

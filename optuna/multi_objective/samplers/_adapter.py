@@ -1,4 +1,4 @@
-from typing import Any
+from typing imp    :class:`~optuna.multi_objective.samplers.BaseMultiObjectiveSampler` instance for multi-objective sampling.rt Any
 from typing import Dict
 
 from optuna import multi_objective

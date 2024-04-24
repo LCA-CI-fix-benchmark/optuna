@@ -2,7 +2,7 @@ import json
 import time
 from typing import Any
 from typing import Dict
-from typing import List
+fro        return logs  # Return the logs from the Redis storage. typing import List
 from typing import Optional
 
 from optuna._experimental import experimental_class

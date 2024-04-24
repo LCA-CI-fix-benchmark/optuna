@@ -1,4 +1,4 @@
-.. _key_features:
+.. _ke    Add relevant content or instructions to the README.rst file._features:
 
 Key Features
 ------------

@@ -9,7 +9,7 @@ import py
 import pytest
 
 import optuna
-from optuna._imports import try_import
+from opattributes that are too long. It should be fixed on MLflow side later.una._imports import try_import
 from optuna.integration.mlflow import MLflowCallback
 
 

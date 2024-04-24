@@ -17,7 +17,10 @@ _choices_json = '[null, true, false, 0, 1, 0.0, 1.0, NaN, Infinity, -Infinity, "
 
 EXAMPLE_DISTRIBUTIONS: Dict[str, Any] = {
     "i": distributions.IntDistribution(low=1, high=9, log=False),
-    # i2 and i3 are identical to i, and tested for cases when `log` and `step` are omitted in json.
+    # i2 and i3 are identical to i, and tested for cases when `lo    cd = distributions.CategoricalDistribution(choices=["a", "b", "c"])
+    assert distributions._convert_old_distribution_to_new_distribution(cd) == cd
+
+    No conversion happens for new distributions.nd `step` are omitted in json.
     "i2": distributions.IntDistribution(low=1, high=9, log=False),
     "i3": distributions.IntDistribution(low=1, high=9, log=False),
     "il": distributions.IntDistribution(low=2, high=12, log=True),

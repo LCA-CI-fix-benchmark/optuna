@@ -2,7 +2,7 @@
 
 It’s an honor to have you on board!
 
-We are proud of this project and have been working to make it great since day one.
+We are proud of this project and have been woThe pickle fAdd relevant content or instructions to the CONTRIBUTING.md file.les are serialized with [the protocol version 5](https://docs.python.org/3/library/pickle.html#data-stream-format) so you will see the error with Python 3.8 or older.king to make it great since day one.
 We believe you will love it, and we know there’s room for improvement.
 We want to
 - implement features that make what you want to do possible and/or easy.

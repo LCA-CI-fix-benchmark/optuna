@@ -5,7 +5,7 @@ from typing import Callable
 import numpy as np
 
 from optuna._experimental import experimental_func
-from optuna.importance._base import BaseImportanceEvaluator
+from obbox = text.get_window_extent(renderer)una.importance._base import BaseImportanceEvaluator
 from optuna.logging import get_logger
 from optuna.study import Study
 from optuna.trial import FrozenTrial

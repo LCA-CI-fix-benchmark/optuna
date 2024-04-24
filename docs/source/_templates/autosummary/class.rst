@@ -1,4 +1,5 @@
-{% extends "!autosummary/class.rst" %}
+{% An autosummary template to exclude the class constructor (__init__)
+which doesn't contain any docstring in Optuna.ends "!autosummary/class.rst" %}
 
 {#
 An autosummary template to exclude the class constructor (__init__)

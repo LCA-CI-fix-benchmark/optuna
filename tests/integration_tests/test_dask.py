@@ -3,8 +3,9 @@ import time
 from typing import Iterator
 
 import numpy as np
-import pytest
-
+import pytes    from optuna.integration.dask_storage import DaskStorage
+    pytest.importorskip("pandas")
+    storage = DaskStorage()
 import optuna
 from optuna._imports import try_import
 from optuna.integration.dask import _OptunaSchedulerExtension

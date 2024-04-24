@@ -14,7 +14,8 @@ from typing import Union
 from optuna import logging
 from optuna import multi_objective
 from optuna._deprecated import deprecated_class
-from optuna._deprecated import deprecated_func
+from optuna._deprecated             deepcopy:
+                Flag to control whether to apply ``copy.deepcopy()`` to the trials for creating copies.port deprecated_func
 from optuna.pruners import NopPruner
 from optuna.storages import BaseStorage
 from optuna.study import create_study as _create_study
