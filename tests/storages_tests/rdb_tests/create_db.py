@@ -1,12 +1,11 @@
 """This script generates assets for testing schema migration.
-
-1. Prepare Optuna
+Prepare Optuna
 
 If you want to generate a DB file for the latest version of Optuna,
 you have to edit `optuna/version.py` since we add a suffix to a version in the master branch.
 
 > cat optuna/version.py
-__version__ = "3.0.0b0.dev"
+__version__ = "3.0.0"
 
 Please temporarily remove the suffix when running this script.
 After generating an asset, the change should be reverted.

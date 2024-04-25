@@ -311,6 +311,7 @@ def json_to_atoms(atoms_str: str) -> Atoms:
 # as class `Objective` in order to carry the artifact store. In its `__call__` method, it retrieves the substance being adsorbed
 # (`slab`) and the molecule being adsorbed (`mol`), then after sampling their positional relationship using Optuna (multiple
 # `trial.suggest_xxx` methods), it triggers an adsorption reaction with the `add_adsorbate` function, transitions to a locally
+# optimized geometry, and returns the energy of the adsorption structure.
 # stable structure, then saves the structure in the artifact store and returns the adsorption energy.
 #
 # The `main` function contains the code to create a `Study` and execute optimization. When creating a `Study`, a storage is

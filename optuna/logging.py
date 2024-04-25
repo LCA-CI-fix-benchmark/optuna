@@ -318,7 +318,6 @@ def enable_propagation() -> None:
     been configured.
 
     Example:
-
         Propagate all log output to the root logger in order to save them to the file.
 
         .. testsetup::
@@ -336,6 +335,12 @@ def enable_propagation() -> None:
             logger = logging.getLogger()
 
             logger.setLevel(logging.INFO)  # Setup the root logger.
+
+            # Add a file handler to the root logger
+            file_handler = logging.FileHandler('optuna.log')
+            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            file_handler.setFormatter(formatter)
+            logger.addHandler(file_handler)
             logger.addHandler(logging.FileHandler("foo.log", mode="w"))
 
             optuna.logging.enable_propagation()  # Propagate logs to the root logger.

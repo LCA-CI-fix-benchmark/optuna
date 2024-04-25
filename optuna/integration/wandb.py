@@ -103,8 +103,8 @@ class WeightsAndBiasesCallback:
             <https://docs.wandb.ai/ref/python/init>`_ for more details.
         as_multirun:
             Creates new runs for each trial. Useful for generating W&B Sweeps like
-            panels (for ex., parameter importance, parallel coordinates, etc).
-
+            panels (for example, parameter importance, parallel coordinates, etc). This allows
+            tracking and visualizing individual trial results separately for better analysis and comparison.
     """
 
     def __init__(

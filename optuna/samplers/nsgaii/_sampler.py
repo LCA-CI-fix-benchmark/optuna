@@ -121,7 +121,7 @@ class NSGAIISampler(BaseSampler):
                 feature. The interface may change in newer versions without prior notice.
                 See https://github.com/optuna/optuna/releases/tag/v3.3.0.
 
-        after_trial_strategy:
+        after_trial_strategy: The strategy to be executed after each trial in the NSGA-II algorithm.
             A set of procedure to be conducted after each trial. Defaults to :obj:`None`.
 
             .. note::

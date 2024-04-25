@@ -83,7 +83,16 @@ pygments_style = "sphinx"
 
 # -- Options for HTML output -------------------------------------------------
 
-# The theme to use for HTML and HTML Help pages.  See the documentation for
+# The theme to use for HTML and HTML Help pages.  See the documentation for available themes.
+html_theme = "default"
+
+# Add any paths that contain custom static files (such as style sheets) here, relative to this directory.
+html_static_path = ['_static']
+
+# Custom sidebar templates, maps document names to template names.
+html_sidebars = {
+    '**': ['globaltoc.html', 'sourcelink.html', 'searchbox.html'],
+}
 # a list of builtin themes.
 #
 html_theme = "sphinx_rtd_theme"
