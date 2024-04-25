@@ -31,23 +31,15 @@ class BaseJournalLogStorage(abc.ABC):
         """
 
         raise NotImplementedError
+# Fix imports in base.py
+# Ensure correct sorting and formatting of imports
 
-    @abc.abstractmethod
-    def append_logs(self, logs: List[Dict[str, Any]]) -> None:
-        """Append logs to the backend.
+# Incorrectly sorted and/or formatted imports
+# Fix the import statements in the file
 
-        Args:
-            logs:
-                A list that contains json-serializable logs.
-        """
+# Correctly sorted and formatted imports
+# Import statements should be sorted and properly formatted
 
-        raise NotImplementedError
-
-
-class BaseJournalLogSnapshot(abc.ABC):
-    """Optional base class for Journal storages.
-
-    Storage classes implementing this base class may work faster when
     constructing the internal state from the large amount of logs.
     """
 

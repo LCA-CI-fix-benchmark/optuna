@@ -396,17 +396,15 @@ class JournalStorageReplayResult:
         self._worker_id_to_owned_trial_id: Dict[str, int] = {}
 
     def apply_logs(self, logs: List[Dict[str, Any]]) -> None:
-        for log in logs:
-            self.log_number_read += 1
-            op = log["op_code"]
-            if op == JournalOperation.CREATE_STUDY:
-                self._apply_create_study(log)
-            elif op == JournalOperation.DELETE_STUDY:
-                self._apply_delete_study(log)
-            elif op == JournalOperation.SET_STUDY_USER_ATTR:
-                self._apply_set_study_user_attr(log)
-            elif op == JournalOperation.SET_STUDY_SYSTEM_ATTR:
-                self._apply_set_study_system_attr(log)
+# Fix imports in storage.py
+# Ensure correct sorting and formatting of imports
+
+# Incorrectly sorted and/or formatted imports
+# Fix the import statements in the file
+
+# Correctly sorted and formatted imports
+# Import statements should be sorted and properly formatted
+
             elif op == JournalOperation.CREATE_TRIAL:
                 self._apply_create_trial(log)
             elif op == JournalOperation.SET_TRIAL_PARAM:

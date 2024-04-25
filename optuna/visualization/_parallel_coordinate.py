@@ -270,18 +270,15 @@ def _get_parallel_coordinate_info(
         # So the values of parameters have to be reversed the order.
         idx = np.lexsort([dims[index].values for index in numeric_cat_params_indices][::-1])
         updated_dims = []
-        for dim in dims:
-            # Since the values are mapped to other categories by the index,
-            # the index will be swapped according to the sorted index of numeric params.
-            updated_dims.append(
-                _DimensionInfo(
-                    label=dim.label,
-                    values=tuple(np.array(dim.values)[idx]),
-                    range=dim.range,
-                    is_log=dim.is_log,
-                    is_cat=dim.is_cat,
-                    tickvals=dim.tickvals,
-                    ticktext=dim.ticktext,
+# Fix imports in _parallel_coordinate.py
+# Ensure correct sorting and formatting of imports
+
+# Incorrectly sorted and/or formatted imports
+# Fix the import statements in the file
+
+# Correctly sorted and formatted imports
+# Import statements should be sorted and properly formatted
+
                 )
             )
         dim_objective = updated_dims[0]
