@@ -59,17 +59,19 @@ def default_weights(x: int) -> np.ndarray:
 
 
 class TPESampler(BaseSampler):
-    """Sampler using TPE (Tree-structured Parzen Estimator) algorithm.
+"""
+### TPE (Tree-structured Parzen Estimator) Algorithm:
 
-    This sampler is based on *independent sampling*.
-    See also :class:`~optuna.samplers.BaseSampler` for more details of 'independent sampling'.
+The Tree-structured Parzen Estimator (TPE) algorithm is a Bayesian optimization algorithm used in hyperparameter tuning. It aims to find the optimal set of hyperparameters for a machine learning model by modeling the objective function and selecting the hyperparameters that are most likely to improve the performance.
 
-    On each trial, for each parameter, TPE fits one Gaussian Mixture Model (GMM) ``l(x)`` to
-    the set of parameter values associated with the best objective values, and another GMM
-    ``g(x)`` to the remaining parameter values. It chooses the parameter value ``x`` that
-    maximizes the ratio ``l(x)/g(x)``.
+The TPE algorithm consists of two main components:
+1. **Modeling**: TPE maintains two sets of probability density functions (PDFs) for each hyperparameter - one for good values and one for bad values. It models the objective function as a ratio of the PDFs and uses this ratio to select the next set of hyperparameters to evaluate.
+2. **Updating**: Based on the performance of the evaluated hyperparameters, TPE updates the PDFs to reflect the known information. This updating process allows TPE to continuously refine its estimates and focus the search on promising regions of the hyperparameter space.
 
-    For further information about TPE algorithm, please refer to the following papers:
+For more information on the TPE algorithm and its implementation, refer to the following resources:
+- [Hyperopt Documentation](http://hyperopt.github.io/hyperopt/)
+- [Bergstra et al., "Algorithms for Hyper-Parameter Optimization"](https://papers.nips.cc/paper/4443-algorithms-for-hyper-parameter-optimization.pdf)
+"""
 
     - `Algorithms for Hyper-Parameter Optimization
       <https://papers.nips.cc/paper/4443-algorithms-for-hyper-parameter-optimization.pdf>`_
