@@ -1,5 +1,4 @@
 """This script generates assets for testing schema migration.
-
 1. Prepare Optuna
 
 If you want to generate a DB file for the latest version of Optuna,

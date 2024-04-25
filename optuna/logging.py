@@ -318,7 +318,6 @@ def enable_propagation() -> None:
     been configured.
 
     Example:
-
         Propagate all log output to the root logger in order to save them to the file.
 
         .. testsetup::
