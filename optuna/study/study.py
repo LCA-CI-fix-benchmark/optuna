@@ -813,18 +813,14 @@ class Study:
         """Enqueue a trial with given parameter values.
 
         You can fix the next sampling parameters which will be evaluated in your
-        objective function.
+        # This is an example objective function for optimization.
 
-        Example:
+        import optuna
 
-            .. testcode::
-
-                import optuna
-
-
-                def objective(trial):
-                    x = trial.suggest_float("x", 0, 10)
-                    return x**2
+        def objective(trial):
+            # x should be suggested as a float in the range of 0 to 10
+            x = trial.suggest_float("x", 0, 10)
+            return x**2
 
 
                 study = optuna.create_study()

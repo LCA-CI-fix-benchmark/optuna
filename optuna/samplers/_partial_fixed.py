@@ -17,18 +17,15 @@ class PartialFixedSampler(BaseSampler):
     """Sampler with partially fixed parameters.
 
     Example:
+        # Fix the value of y after several optimization steps
+        
+        import optuna
 
-        After several steps of optimization, you can fix the value of ``y`` and re-optimize it.
-
-        .. testcode::
-
-            import optuna
-
-
-            def objective(trial):
-                x = trial.suggest_float("x", -1, 1)
-                y = trial.suggest_int("y", -1, 1)
-                return x**2 + y
+        def objective(trial):
+            x = trial.suggest_float("x", -1, 1)
+            # y should be suggested as an integer in the range of -1 to 1
+            y = trial.suggest_int("y", -1, 1)
+            return x**2 + y
 
 
             study = optuna.create_study()
