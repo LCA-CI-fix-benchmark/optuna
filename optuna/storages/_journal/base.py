@@ -31,7 +31,6 @@ class BaseJournalLogStorage(abc.ABC):
         """
 
         raise NotImplementedError
-
     @abc.abstractmethod
     def append_logs(self, logs: List[Dict[str, Any]]) -> None:
         """Append logs to the backend.
