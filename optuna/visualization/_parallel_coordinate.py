@@ -263,29 +263,27 @@ def _get_parallel_coordinate_info(
             )
 
         dims.append(dim)
+# Edit the code to fix the issue with sorting the values of parameters based on numeric_cat_params_indices.
 
-    if numeric_cat_params_indices:
-        dims.insert(0, dim_objective)
-        # np.lexsort consumes the sort keys the order from back to front.
-        # So the values of parameters have to be reversed the order.
-        idx = np.lexsort([dims[index].values for index in numeric_cat_params_indices][::-1])
-        updated_dims = []
-        for dim in dims:
-            # Since the values are mapped to other categories by the index,
-            # the index will be swapped according to the sorted index of numeric params.
-            updated_dims.append(
-                _DimensionInfo(
-                    label=dim.label,
-                    values=tuple(np.array(dim.values)[idx]),
-                    range=dim.range,
-                    is_log=dim.is_log,
-                    is_cat=dim.is_cat,
-                    tickvals=dim.tickvals,
-                    ticktext=dim.ticktext,
-                )
+if numeric_cat_params_indices:
+    dims.insert(0, dim_objective)
+    idx = np.lexsort([dims[index].values for index in numeric_cat_params_indices][::-1])
+    updated_dims = []
+    for dim in dims:
+        updated_values = [np.array(dim.values)[i] for i in idx]
+        updated_dims.append(
+            _DimensionInfo(
+                label=dim.label,
+                values=tuple(updated_values),
+                range=dim.range,
+                is_log=dim.is_log,
+                is_cat=dim.is_cat,
+                tickvals=dim.tickvals,
+                ticktext=dim.ticktext,
             )
-        dim_objective = updated_dims[0]
-        dims = updated_dims[1:]
+        )
+    dim_objective = updated_dims[0]
+    dims = updated_dims[1:]
 
     return _ParallelCoordinateInfo(
         dim_objective=dim_objective,

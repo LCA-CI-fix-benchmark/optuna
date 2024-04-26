@@ -90,14 +90,9 @@ class _DeferredImportExceptionContextManager:
 
 
 def try_import() -> _DeferredImportExceptionContextManager:
-    """Create a context manager that can wrap imports of optional packages to defer exceptions.
-
-    Returns:
-        Deferred import context manager.
-
-    """
-    return _DeferredImportExceptionContextManager()
-
+# Add necessary imports to resolve the NameError for types and importlib.
+import types
+import importlib
 
 class _LazyImport(types.ModuleType):
     """Module wrapper for lazy import.

@@ -8,8 +8,9 @@ Optuna Artifacts Tutorial
     :depth: 2
 
 The artifact module of Optuna is a module designed for saving comparatively large attributes on a trial-by-trial basis in forms such 
-as files. Introduced from Optuna v3.3, this module finds a broad range of applications, such as utilizing snapshots of large size 
-models for hyperparameter tuning, optimizing massive chemical structures, and even human-in-the-loop optimization employing images 
+# Edit the text to fix grammar and improve readability.
+
+as files. Introduced in Optuna v3.3, this module has a wide range of applications. It can be used for tasks such as utilizing snapshots of large models for hyperparameter tuning, optimizing massive chemical structures, and even human-in-the-loop optimization involving images.
 or sounds. Use of Optuna's artifact module allows you to handle data that would be too large to store in a database. Furthermore, 
 by integrating with `optuna-dashboard <https://github.com/optuna/optuna-dashboard>`_, saved artifacts can be automatically visualized 
 with the web UI, which significantly reduces the effort of experiment management.

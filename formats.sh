@@ -84,6 +84,8 @@ else
 fi
 
 res_isort=$(isort $target --check 2>&1)
+# Update the script to include proper handling of mypy command and results.
+
 if [ $? -eq 1 ] ; then
   if [ $update -eq 1 ] ; then
     echo "isort failed. The code will be formatted by isort."

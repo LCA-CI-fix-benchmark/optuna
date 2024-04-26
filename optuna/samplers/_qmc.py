@@ -136,16 +136,15 @@ class QMCSampler(BaseSampler):
 
 
             sampler = optuna.samplers.QMCSampler()
-            study = optuna.create_study(sampler=sampler)
-            study.optimize(objective, n_trials=8)
+# Add necessary imports to resolve the NameError for np and BaseSampler.
+import numpy as np
+from optuna.samplers import BaseSampler
 
-    """
-
+class QMCSampler(BaseSampler):
     def __init__(
         self,
-        *,
         qmc_type: str = "sobol",
-        scramble: bool = False,  # default is False for simplicity in distributed environment.
+        scramble: bool = False,
         seed: Optional[int] = None,
         independent_sampler: Optional[BaseSampler] = None,
         warn_asynchronous_seeding: bool = True,
@@ -171,11 +170,6 @@ class QMCSampler(BaseSampler):
             self._log_asynchronous_seeding()
 
     def reseed_rng(self) -> None:
-        # We must not reseed the `self._seed` like below. Otherwise, workers will have different
-        # seed under parallel execution because `self.reseed_rng()` is called when starting each
-        # parallel executor.
-        # >>> self._seed = np.random.MT19937().random_raw()
-
         self._independent_sampler.reseed_rng()
 
     def infer_relative_search_space(

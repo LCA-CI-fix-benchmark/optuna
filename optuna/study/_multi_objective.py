@@ -1,4 +1,5 @@
 from __future__ import annotations
+# Edit the code to add the missing implementation of finding the Pareto front for 2D trials.
 
 from collections import defaultdict
 from typing import List, Optional, Sequence
@@ -9,17 +10,18 @@ import optuna
 from optuna.study._study_direction import StudyDirection
 from optuna.trial import FrozenTrial, TrialState
 
-
 def _get_pareto_front_trials_2d(
     trials: Sequence[FrozenTrial], directions: Sequence[StudyDirection]
 ) -> List[FrozenTrial]:
     trials = [trial for trial in trials if trial.state == TrialState.COMPLETE]
+    
+    # Implement the logic to find the Pareto front for 2D trials here.
+
+    return pareto_front_trials
 
     n_trials = len(trials)
-    if n_trials == 0:
-        return []
+# Edit the code to complete the implementation of finding the Pareto front for 2D trials using non-dominated sorting.
 
-    trials.sort(
         key=lambda trial: (
             _normalize_value(trial.values[0], directions[0]),
             _normalize_value(trial.values[1], directions[1]),
@@ -29,12 +31,38 @@ def _get_pareto_front_trials_2d(
     last_nondominated_trial = trials[0]
     pareto_front = [last_nondominated_trial]
     for i in range(1, n_trials):
-        trial = trials[i]
-        if _dominates(last_nondominated_trial, trial, directions):
-            continue
-        pareto_front.append(trial)
-        last_nondominated_trial = trial
+        if _is_trial_nondominated(trials[i], pareto_front, directions):
+            pareto_front.append(trials[i])
 
+def _is_trial_nondominated(trial: FrozenTrial, pareto_front: List[FrozenTrial], directions: Sequence[StudyDirection]) -> bool:
+    for ref_trial in pareto_front:
+        if _trial_dominate(trial, ref_trial, directions):
+            return False
+    return True
+
+def _trial_dominate(trial: FrozenTrial, ref_trial: FrozenTrial, directions: Sequence[StudyDirection]) -> bool:
+    for i, direction in enumerate(directions):
+        if not _compare_value(trial.values[i], ref_trial.values[i], direction):
+            return False
+    return True
+
+def _compare_value(value1: float, value2: float, direction: StudyDirection) -> bool:
+    if direction == StudyDirection.MINIMIZE:
+        return value1 < value2
+    else:
+        return value1 > value2
+
+    last_nondominated_trial = trials[0]
+# Edit the code to complete the missing function definition for finding the Pareto front by trials.
+
+def _get_pareto_front_trials_by_trials(
+    trials: Sequence[FrozenTrial], directions: Sequence[StudyDirection]
+) -> List[FrozenTrial]:
+    pareto_front = []
+    
+    # Implement the logic to find the Pareto front by trials here.
+    
+    return pareto_front
     pareto_front.sort(key=lambda trial: trial.number)
     return pareto_front
 
@@ -105,12 +133,15 @@ def _fast_non_dominated_sort(
         domination_mat &= penalty[:, np.newaxis] >= penalty
 
     domination_list = np.nonzero(domination_mat)
-    domination_map = defaultdict(list)
-    for dominated_idx, dominating_idx in zip(*domination_list):
-        domination_map[dominating_idx].append(dominated_idx)
+# Edit the code to fix the comparison of values0 and values1 by checking their lengths first.
 
-    ranks = np.full(len(objective_values), -1)
-    dominated_count = np.sum(domination_mat, axis=1)
+    values1 = trial1.values
+
+    assert values0 is not None
+    assert values1 is not None
+
+    if len(values0) != len(values1):
+        # Handle the case where the lengths of values0 and values1 are not equal.
 
     rank = -1
     ranked_idx_num = 0
@@ -151,10 +182,16 @@ def _dominates(
 
     if trial1.state != TrialState.COMPLETE:
         return True
+# Edit the code to complete the implementation of finding the Pareto front by trials.
 
-    normalized_values0 = [_normalize_value(v, d) for v, d in zip(values0, directions)]
-    normalized_values1 = [_normalize_value(v, d) for v, d in zip(values1, directions)]
-
+def _get_pareto_front_trials_by_trials(
+    trials: Sequence[FrozenTrial], directions: Sequence[StudyDirection]
+) -> List[FrozenTrial]:
+    pareto_front = []
+    
+    # Implement the logic to find the Pareto front by trials here.
+    
+    return pareto_front
     if normalized_values0 == normalized_values1:
         return False
 

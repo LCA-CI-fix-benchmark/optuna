@@ -59,24 +59,20 @@ def default_weights(x: int) -> np.ndarray:
 
 
 class TPESampler(BaseSampler):
-    """Sampler using TPE (Tree-structured Parzen Estimator) algorithm.
+# Edit the docstring to provide a more concise and informative description of the TPE sampler algorithm.
 
-    This sampler is based on *independent sampling*.
-    See also :class:`~optuna.samplers.BaseSampler` for more details of 'independent sampling'.
+"""Sampler using the Tree-structured Parzen Estimator (TPE) algorithm.
 
-    On each trial, for each parameter, TPE fits one Gaussian Mixture Model (GMM) ``l(x)`` to
-    the set of parameter values associated with the best objective values, and another GMM
-    ``g(x)`` to the remaining parameter values. It chooses the parameter value ``x`` that
-    maximizes the ratio ``l(x)/g(x)``.
+This sampler is based on independent sampling. It fits Gaussian Mixture Models (GMMs) to the
+parameter values associated with the best objective values and selects parameter values that maximize
+the ratio of the GMMs. 
 
-    For further information about TPE algorithm, please refer to the following papers:
+For more information about the TPE algorithm, refer to the following papers:
 
-    - `Algorithms for Hyper-Parameter Optimization
-      <https://papers.nips.cc/paper/4443-algorithms-for-hyper-parameter-optimization.pdf>`_
-    - `Making a Science of Model Search: Hyperparameter Optimization in Hundreds of
-      Dimensions for Vision Architectures <http://proceedings.mlr.press/v28/bergstra13.pdf>`_
-    - `Tree-Structured Parzen Estimator: Understanding Its Algorithm Components and Their Roles for
-      Better Empirical Performance <https://arxiv.org/abs/2304.11127>`_
+- Algorithms for Hyper-Parameter Optimization: [Link](https://papers.nips.cc/paper/4443-algorithms-for-hyper-parameter-optimization.pdf)
+- Making a Science of Model Search: Hyperparameter Optimization in Hundreds of Dimensions for Vision Architectures: [Link](http://proceedings.mlr.press/v28/bergstra13.pdf)
+- Tree-Structured Parzen Estimator: Understanding Its Algorithm Components and Their Roles for Better Empirical Performance: [Link](https://arxiv.org/abs/2304.11127)
+"""
 
     For multi-objective TPE (MOTPE), please refer to the following papers:
 
