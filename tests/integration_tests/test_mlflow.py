@@ -202,6 +202,7 @@ def test_tag_truncation(tmpdir: py.path.local) -> None:
     tracking_uri = f"file:{tmpdir}"
     study_name = "my_study"
     n_trials = 3
+    # Add test assertions or logic here to verify the behavior being tested.
 
     mlflc = MLflowCallback(tracking_uri=tracking_uri)
     study = optuna.create_study(study_name=study_name)

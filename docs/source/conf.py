@@ -204,7 +204,7 @@ sphinx_gallery_conf = {
         "tutorial/20_recipes",
     ],
     "within_subsection_order": FileNameSortKey,
-    "filename_pattern": r"/*\.py",
+    "filename_pattern": r".*\.py",
     "first_notebook_cell": None,
 }
 

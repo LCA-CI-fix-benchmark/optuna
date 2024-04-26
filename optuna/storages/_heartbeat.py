@@ -143,7 +143,7 @@ def get_heartbeat_thread(trial_id: int, storage: BaseStorage) -> BaseHeartbeatTh
 
 @experimental_func("2.9.0")
 def fail_stale_trials(study: "optuna.Study") -> None:
-    """Fail stale trials and run their failure callbacks.
+    """Fail stale trials and run their failure callbacks."""
 
     The running trials whose heartbeat has not been updated for a long time will be failed,
     that is, those states will be changed to :obj:`~optuna.trial.TrialState.FAIL`.

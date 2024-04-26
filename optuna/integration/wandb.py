@@ -29,7 +29,7 @@ class WeightsAndBiasesCallback:
     .. note::
         User needs to be logged in to Weights & Biases before
         using this callback in online mode. For more information, please
-        refer to `wandb setup <https://docs.wandb.ai/quickstart#1-set-up-wandb>`_.
+        refer to [wandb setup](https://docs.wandb.ai/quickstart#1-set-up-wandb).
 
     .. note::
         Users who want to run multiple Optuna studies within the same process

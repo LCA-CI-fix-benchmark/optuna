@@ -29,13 +29,12 @@ def init_mock_client() -> Iterator[tuple[str, S3Client]]:
         s3_client.create_bucket(Bucket=bucket_name)
 
         yield bucket_name, s3_client
-
         # Runs after each test
         objects = s3_client.list_objects(Bucket=bucket_name).get("Contents", [])
         if objects:
             s3_client.delete_objects(
                 Bucket=bucket_name,
-                Delete={"Objects": [{"Key": obj["Key"] for obj in objects}], "Quiet": True},
+                Delete={"Objects": [{"Key": obj["Key"]} for obj in objects], "Quiet": True},
             )
         s3_client.delete_bucket(Bucket=bucket_name)
 

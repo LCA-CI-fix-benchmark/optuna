@@ -817,14 +817,13 @@ class Study:
 
         Example:
 
-            .. testcode::
+        .. testcode::
 
-                import optuna
+            import optuna
 
-
-                def objective(trial):
-                    x = trial.suggest_float("x", 0, 10)
-                    return x**2
+            def objective(trial):
+                x = trial.suggest_float("x", 0, 10)
+                return x**2
 
 
                 study = optuna.create_study()

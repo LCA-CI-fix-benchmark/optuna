@@ -83,8 +83,11 @@ def _reset_library_root_logger() -> None:
     global _default_handler
 
     with _lock:
-        if not _default_handler:
-            return
+        if _default_handler:
+            library_root_logger = _get_library_root_logger()
+            library_root_logger.addHandler(_default_handler)
+            library_root_logger.setLevel(logging.INFO)
+            library_root_logger.propagate = False
 
         library_root_logger: logging.Logger = _get_library_root_logger()
         library_root_logger.removeHandler(_default_handler)
@@ -289,15 +292,13 @@ def disable_propagation() -> None:
             optuna.logging.enable_propagation()  # Propagate logs to the root logger.
 
             study = optuna.create_study()
-
-            logger.info("Logs from first optimize call")  # The logs are saved in the logs file.
-            study.optimize(objective, n_trials=10)
-
-            optuna.logging.disable_propagation()  # Stop propogating logs to the root logger.
+            optuna.logging.disable_propagation()  # Stop propagating logs to the root logger.
 
             logger.info("Logs from second optimize call")
-            # The new logs for second optimize call are not saved.
+            # The new logs for the second optimize call should be saved.
             study.optimize(objective, n_trials=10)
+
+            # Add appropriate logging configuration or handling to save the new logs.
 
             with open("foo.log") as f:
                 assert f.readline().startswith("A new study created")

@@ -135,7 +135,7 @@ class _ParzenEstimator:
             else samples_array[:, i]
             for i, param in enumerate(self._search_space)
         }
-        # TODO(contramundum53): Remove this line after fixing log-Int hack.
+        # TODO(contramundum53): Remove this line after fixing log-Int hack. Add explanation or action item here.
         return {
             param: np.clip(
                 dist.low + np.round((res[param] - dist.low) / dist.step) * dist.step,
