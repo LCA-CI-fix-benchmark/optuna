@@ -46,11 +46,19 @@ def train(
     detection.
 
     :func:`~optuna.integration.lightgbm.train` is a wrapper function of
-    :class:`~optuna.integration.lightgbm.LightGBMTuner`. To use feature in Optuna such as
-    suspended/resumed optimization and/or parallelization, refer to
-    :class:`~optuna.integration.lightgbm.LightGBMTuner` instead of this function.
+# optuna/study/_multi_objective.py
 
-    .. note::
+# Correctly sorted and formatted imports
+import os
+import sys
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from optuna.study import StudyDirection
+from optuna.study import StudySummary
+from optuna.study import Study
+from optuna.study import create_study
         Arguments and keyword arguments for `lightgbm.train()`_ can be passed.
         For ``params``, please check `the official documentation for LightGBM
         <https://lightgbm.readthedocs.io/en/latest/Parameters.html>`_.

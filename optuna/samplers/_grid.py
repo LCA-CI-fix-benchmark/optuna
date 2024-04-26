@@ -89,15 +89,16 @@ class GridSampler(BaseSampler):
         :meth:`~optuna.study.Study.enqueue_trial`.
 
     Args:
-        search_space:
-            A dictionary whose key and value are a parameter name and the corresponding candidates
-            of values, respectively.
-        seed:
-            A seed to fix the order of trials as the grid is randomly shuffled. Please note that
-            it is not recommended using this option in distributed optimization settings since
-            this option cannot ensure the order of trials and may increase the number of duplicate
-            suggestions during distributed optimization.
-    """
+# optuna/samplers/_grid.py
+
+# Correctly sorted and formatted imports
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from optuna.samplers import BaseSampler
+from optuna.distributions import CategoricalDistribution
+from optuna.distributions import UniformDistribution
 
     def __init__(
         self, search_space: Mapping[str, Sequence[GridValueType]], seed: Optional[int] = None

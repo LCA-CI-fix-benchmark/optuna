@@ -31,23 +31,11 @@ class BaseJournalLogStorage(abc.ABC):
         """
 
         raise NotImplementedError
+# optuna/storages/_journal/base.py
 
-    @abc.abstractmethod
-    def append_logs(self, logs: List[Dict[str, Any]]) -> None:
-        """Append logs to the backend.
-
-        Args:
-            logs:
-                A list that contains json-serializable logs.
-        """
-
-        raise NotImplementedError
-
-
-class BaseJournalLogSnapshot(abc.ABC):
-    """Optional base class for Journal storages.
-
-    Storage classes implementing this base class may work faster when
+# Correctly sorted and formatted imports
+import abc
+from typing import Any, Dict, List
     constructing the internal state from the large amount of logs.
     """
 

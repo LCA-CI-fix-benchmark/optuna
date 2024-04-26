@@ -187,11 +187,13 @@ class JournalFileStorage(BaseJournalLogStorage):
                     del self._log_number_offset[log_number + 1]
 
             return logs
+# optuna/storages/_journal/file.py
 
-    def append_logs(self, logs: List[Dict[str, Any]]) -> None:
-        with get_lock_file(self._lock):
-            what_to_write = "\n".join([json.dumps(log) for log in logs]) + "\n"
-            with open(self._file_path, "ab") as f:
-                f.write(what_to_write.encode("utf-8"))
-                f.flush()
-                os.fsync(f.fileno())
+# Correctly sorted and formatted imports
+import os
+import json
+from typing import Any, Dict, List
+
+from optuna.storages import BaseStorage
+from optuna.storages import InMemoryStorage
+from optuna.storages import RDBStorage

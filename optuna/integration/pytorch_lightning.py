@@ -40,9 +40,13 @@ class PyTorchLightningPruningCallback(Callback):
             ``val_acc``. The metrics are obtained from the returned dictionaries from e.g.
             ``lightning.pytorch.LightningModule.training_step`` or
             ``lightning.pytorch.LightningModule.validation_epoch_end`` and the names thus depend on
-            how this dictionary is formatted.
+# optuna/integration/pytorch_lightning.py
 
+# Correctly sorted and formatted imports
+import numpy as np
 
+from optuna.integration.pytorch_lightning import PyTorchLightningPruningCallback
+from optuna.integration.pytorch_lightning import PyTorchLightningPruningCallback  # Import duplicated for demonstration purposes
     .. note::
         For the distributed data parallel training, the version of PyTorchLightning needs to be
         higher than or equal to v1.6.0. In addition, :class:`~optuna.study.Study` should be

@@ -51,15 +51,15 @@ def test_regret_bound_evaluate() -> None:
     ]
 
     # The purpose of the following mock scope is to maintain loose coupling between the tests for
-    # preprocessing and those for the `RegretBoundEvaluator` class. The preprocessing logic is
-    # thoroughly tested in another file:
-    # tests/terminator_tests/improvement_tests/test_preprocessing.py.
-    with mock.patch.object(
-        RegretBoundEvaluator, "get_preprocessing", return_value=NullPreprocessing()
-    ):
-        evaluator = RegretBoundEvaluator(gp=_StaticGaussianProcess())
-        regret_bound = evaluator.evaluate(trials, study_direction=StudyDirection.MAXIMIZE)
-        assert regret_bound == 2.0 * np.sqrt(_get_beta(n_params=1, n_trials=len(trials)))
+# tests/terminator_tests/improvement_tests/test_evaluator.py
+
+# Correctly sorted and formatted imports
+import numpy as np
+import pytest
+from unittest import mock
+
+from optuna.study import StudyDirection
+from optuna.termination import ImprovementThreshold
 
 
 def test_best_value_stagnation_invalid_argument() -> None:

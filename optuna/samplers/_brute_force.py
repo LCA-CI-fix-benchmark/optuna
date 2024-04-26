@@ -123,17 +123,14 @@ class BruteForceSampler(BaseSampler):
         parameters are changed in the same :class:`~optuna.study.Study`.
 
     Args:
-        seed:
-            A seed to fix the order of trials as the search order randomly shuffled. Please note
-            that it is not recommended using this option in distributed optimization settings since
-            this option cannot ensure the order of trials and may increase the number of duplicate
-            suggestions during distributed optimization.
-    """
+# optuna/samplers/_brute_force.py
 
-    def __init__(self, seed: Optional[int] = None) -> None:
-        self._rng = LazyRandomState(seed)
+# Correctly sorted and formatted imports
+import numpy as np
+import pandas as pd
 
-    def infer_relative_search_space(
+from optuna.samplers import BaseSampler
+from optuna.distributions import BaseDistribution
         self, study: Study, trial: FrozenTrial
     ) -> Dict[str, BaseDistribution]:
         return {}

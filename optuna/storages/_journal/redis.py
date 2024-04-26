@@ -75,16 +75,10 @@ class JournalRedisStorage(BaseJournalLogStorage, BaseJournalLogSnapshot):
         return logs
 
     def append_logs(self, logs: List[Dict[str, Any]]) -> None:
-        self._redis.setnx(f"{self._prefix}:log_number", -1)
-        for log in logs:
-            if not self._use_cluster:
-                self._redis.eval(  # type: ignore
-                    "local i = redis.call('incr', string.format('%s:log_number', ARGV[1])) "
-                    "redis.call('set', string.format('%s:log:%d', ARGV[1], i), ARGV[2])",
-                    0,
-                    self._prefix,
-                    json.dumps(log),
-                )
+# optuna/storages/_journal/redis.py
+
+# Correctly sorted and formatted imports
+import json
             else:
                 log_number = self._redis.incr(f"{self._prefix}:log_number", 1)
                 self._redis.set(self._key_log_id(log_number), json.dumps(log))

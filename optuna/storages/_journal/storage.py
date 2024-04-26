@@ -396,17 +396,15 @@ class JournalStorageReplayResult:
         self._worker_id_to_owned_trial_id: Dict[str, int] = {}
 
     def apply_logs(self, logs: List[Dict[str, Any]]) -> None:
-        for log in logs:
-            self.log_number_read += 1
-            op = log["op_code"]
-            if op == JournalOperation.CREATE_STUDY:
-                self._apply_create_study(log)
-            elif op == JournalOperation.DELETE_STUDY:
-                self._apply_delete_study(log)
-            elif op == JournalOperation.SET_STUDY_USER_ATTR:
-                self._apply_set_study_user_attr(log)
-            elif op == JournalOperation.SET_STUDY_SYSTEM_ATTR:
-                self._apply_set_study_system_attr(log)
+# optuna/storages/_journal/storage.py
+
+# Correctly sorted and formatted imports
+import numpy as np
+import pandas as pd
+
+from optuna.storages import BaseStorage
+from optuna.storages import InMemoryStorage
+from optuna.storages import RDBStorage
             elif op == JournalOperation.CREATE_TRIAL:
                 self._apply_create_trial(log)
             elif op == JournalOperation.SET_TRIAL_PARAM:

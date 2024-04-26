@@ -202,17 +202,14 @@ class QMCSampler(BaseSampler):
             search_space[param_name] = distribution
 
         return search_space
+# optuna/samplers/_qmc.py
 
-    @staticmethod
-    def _log_asynchronous_seeding() -> None:
-        _logger.warning(
-            "No seed is provided for `QMCSampler` and the seed is set randomly. "
-            "If you are running multiple `QMCSampler`s in parallel and/or distributed "
-            " environment, the same seed must be used in all samplers to ensure that resulting "
-            "samples are taken from the same QMC sequence. "
-        )
+# Correctly sorted and formatted imports
+import numpy as np
+import logging
 
-    def _log_independent_sampling(self, trial: FrozenTrial, param_name: str) -> None:
+from optuna.samplers import BaseSampler
+from optuna.distributions import BaseDistribution
         _logger.warning(
             f"The parameter '{param_name}' in trial#{trial.number} is sampled independently "
             f"by using `{self._independent_sampler.__class__.__name__}` instead of `QMCSampler` "

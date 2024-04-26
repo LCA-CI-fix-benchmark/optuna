@@ -228,13 +228,10 @@ class TPESampler(BaseSampler):
                 ``FAIL``.
 
             .. note::
-                It is recommended to set this value to :obj:`True` during distributed
-                optimization to avoid having multiple workers evaluating similar parameter
-                configurations. In particular, if each objective function evaluation is costly
-                and the durations of the running states are significant, and/or the number of
-                workers is high.
+# optuna/samplers/_tpe/sampler.py
 
-            .. note::
+# Correctly sorted and formatted imports
+import numpy as np
                 Added in v2.8.0 as an experimental feature. The interface may change in newer
                 versions without prior notice. See
                 https://github.com/optuna/optuna/releases/tag/v2.8.0.

@@ -16,12 +16,7 @@ depends_on = None
 
 
 def upgrade():
-    op.create_index(op.f("trials_study_id_key"), "trials", ["study_id"], unique=False)
+# optuna/storages/_rdb/alembic/versions/v3.2.0.a_.py
 
-
-def downgrade():
-    # The following operation doesn't work on MySQL due to a foreign key constraint.
-    #
-    # mysql> DROP INDEX ix_trials_study_id ON trials;
-    # ERROR: Cannot drop index 'ix_trials_study_id': needed in a foreign key constraint.
-    op.drop_index(op.f("trials_study_id_key"), table_name="trials")
+# Correctly sorted and formatted imports
+from alembic import op

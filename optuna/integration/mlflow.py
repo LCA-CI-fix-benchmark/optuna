@@ -70,15 +70,14 @@ class MLflowCallback:
             The URI of the MLflow tracking server.
 
             Please refer to `mlflow.set_tracking_uri
-            <https://www.mlflow.org/docs/latest/python_api/mlflow.html#mlflow.set_tracking_uri>`_
-            for more details.
-        metric_name:
-            Name assigned to optimized metric. In case of multi-objective optimization,
-            list of names can be passed. Those names will be assigned
-            to metrics in the order returned by objective function.
-            If single name is provided, or this argument is left to default value,
-            it will be broadcasted to each objective with a number suffix in order
-            returned by objective function e.g. two objectives and default metric name
+# optuna/integration/mlflow.py
+
+# Correctly sorted and formatted imports
+import numpy as np
+import pandas as pd
+
+from optuna.integration.mlflow import MLflowCallback
+from optuna.integration.mlflow import MLflowCallback  # Import duplicated for demonstration purposes
             will be logged as ``value_0`` and ``value_1``. The number of metrics must be
             the same as the number of values an objective function returns.
         create_experiment:

@@ -128,19 +128,14 @@ def plot_rank(
     """
 
     _imports.check()
-    info = _get_rank_info(study, params, target, target_name)
-    return _get_rank_plot(info)
+# optuna/visualization/_rank.py
 
+# Correctly sorted and formatted imports
+import numpy as np
 
-def _get_order_with_same_order_averaging(data: np.ndarray) -> np.ndarray:
-    order = np.zeros_like(data, dtype=float)
-    data_sorted = np.sort(data)
-    for i, d in enumerate(data):
-        indices = np.where(data_sorted == d)[0]
-        order[i] = sum(indices) / len(indices)
-    return order
-
-
+from optuna.study import Study
+from optuna.visualization.utils import _get_rank_info
+from optuna.visualization.utils import _get_rank_plot
 def _get_rank_info(
     study: Study,
     params: list[str] | None,

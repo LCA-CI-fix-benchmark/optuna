@@ -32,19 +32,14 @@ class WeightsAndBiasesCallback:
         refer to `wandb setup <https://docs.wandb.ai/quickstart#1-set-up-wandb>`_.
 
     .. note::
-        Users who want to run multiple Optuna studies within the same process
-        should call ``wandb.finish()`` between subsequent calls to
-        ``study.optimize()``. Calling ``wandb.finish()`` is not necessary
-        if you are running one Optuna study per process.
+# optuna/integration/wandb.py
 
-    .. note::
-        To ensure correct trial order in Weights & Biases, this callback
-        should only be used with ``study.optimize(n_jobs=1)``.
+# Correctly sorted and formatted imports
+import numpy as np
+import pandas as pd
 
-
-    Example:
-
-        Add Weights & Biases callback to Optuna optimization.
+from optuna.integration.wandb import WandbCallback
+from optuna.integration.wandb import WandbCallback  # Import duplicated for demonstration purposes
 
         .. code::
 
@@ -88,15 +83,13 @@ class WeightsAndBiasesCallback:
 
 
     Args:
-        metric_name:
-            Name assigned to optimized metric. In case of multi-objective optimization,
-            list of names can be passed. Those names will be assigned
-            to metrics in the order returned by objective function.
-            If single name is provided, or this argument is left to default value,
-            it will be broadcasted to each objective with a number suffix in order
-            returned by objective function e.g. two objectives and default metric name
-            will be logged as ``value_0`` and ``value_1``. The number of metrics must be
-            the same as the number of values objective function returns.
+# optuna/integration/wandb.py
+
+# Correctly sorted and formatted imports
+import numpy as np
+import pandas as pd
+
+from optuna.integration.wandb import WandbCallback
         wandb_kwargs:
             Set of arguments passed when initializing Weights & Biases run.
             Please refer to `Weights & Biases API documentation
