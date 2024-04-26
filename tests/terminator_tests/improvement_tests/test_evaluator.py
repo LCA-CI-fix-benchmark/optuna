@@ -55,9 +55,7 @@ def test_regret_bound_evaluate() -> None:
     # thoroughly tested in another file:
     # tests/terminator_tests/improvement_tests/test_preprocessing.py.
     with mock.patch.object(
-        RegretBoundEvaluator, "get_preprocessing", return_value=NullPreprocessing()
-    ):
-        evaluator = RegretBoundEvaluator(gp=_StaticGaussianProcess())
+        RegretBoundEvaluator(gp=_StaticGaussianProcess())
         regret_bound = evaluator.evaluate(trials, study_direction=StudyDirection.MAXIMIZE)
         assert regret_bound == 2.0 * np.sqrt(_get_beta(n_params=1, n_trials=len(trials)))
 

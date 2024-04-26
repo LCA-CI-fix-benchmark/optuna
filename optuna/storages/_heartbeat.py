@@ -89,10 +89,7 @@ class BaseHeartbeatThread(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def join(self) -> None:
-        raise NotImplementedError()
-
-
-class NullHeartbeatThread(BaseHeartbeatThread):
+        pass
     def __init__(self) -> None:
         pass
 
