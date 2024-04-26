@@ -279,6 +279,8 @@ def _get_parallel_coordinate_info(
                     values=tuple(np.array(dim.values)[idx]),
                     range=dim.range,
                     is_log=dim.is_log,
+                )
+            )
                     is_cat=dim.is_cat,
                     tickvals=dim.tickvals,
                     ticktext=dim.ticktext,

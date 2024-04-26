@@ -202,13 +202,12 @@ class QMCSampler(BaseSampler):
             search_space[param_name] = distribution
 
         return search_space
-
     @staticmethod
     def _log_asynchronous_seeding() -> None:
         _logger.warning(
             "No seed is provided for `QMCSampler` and the seed is set randomly. "
             "If you are running multiple `QMCSampler`s in parallel and/or distributed "
-            " environment, the same seed must be used in all samplers to ensure that resulting "
+            "environment, the same seed must be used in all samplers to ensure that resulting "
             "samples are taken from the same QMC sequence. "
         )
 
