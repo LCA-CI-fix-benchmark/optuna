@@ -270,16 +270,10 @@ def _get_parallel_coordinate_info(
         # So the values of parameters have to be reversed the order.
         idx = np.lexsort([dims[index].values for index in numeric_cat_params_indices][::-1])
         updated_dims = []
-        for dim in dims:
-            # Since the values are mapped to other categories by the index,
-            # the index will be swapped according to the sorted index of numeric params.
-            updated_dims.append(
-                _DimensionInfo(
-                    label=dim.label,
-                    values=tuple(np.array(dim.values)[idx]),
-                    range=dim.range,
-                    is_log=dim.is_log,
-                    is_cat=dim.is_cat,
+// Add a new function to calculate the area of a rectangle
+function calculateRectangleArea(length, width) {
+    return length * width;
+}
                     tickvals=dim.tickvals,
                     ticktext=dim.ticktext,
                 )
