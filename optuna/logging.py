@@ -222,7 +222,6 @@ def disable_default_handler() -> None:
                 return x**2 + y
 
         .. testcode::
-
             import optuna
 
             study = optuna.create_study()
@@ -289,6 +288,7 @@ def disable_propagation() -> None:
             optuna.logging.enable_propagation()  # Propagate logs to the root logger.
 
             study = optuna.create_study()
+            study = optuna.create_study()
 
             logger.info("Logs from first optimize call")  # The logs are saved in the logs file.
             study.optimize(objective, n_trials=10)
@@ -297,7 +297,6 @@ def disable_propagation() -> None:
 
             logger.info("Logs from second optimize call")
             # The new logs for second optimize call are not saved.
-            study.optimize(objective, n_trials=10)
 
             with open("foo.log") as f:
                 assert f.readline().startswith("A new study created")
@@ -329,6 +328,7 @@ def enable_propagation() -> None:
                 return x**2 + y
 
         .. testcode::
+        .. testcode::
 
             import optuna
             import logging
@@ -340,8 +340,6 @@ def enable_propagation() -> None:
 
             optuna.logging.enable_propagation()  # Propagate logs to the root logger.
             optuna.logging.disable_default_handler()  # Stop showing logs in sys.stderr.
-
-            study = optuna.create_study()
 
             logger.info("Start optimization.")
             study.optimize(objective, n_trials=10)

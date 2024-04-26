@@ -15,7 +15,6 @@ class BaseJournalLogStorage(abc.ABC):
     :class:`~optuna.storages.JournalFileOpenLock` for creating a critical section.
 
     """
-
     @abc.abstractmethod
     def read_logs(self, log_number_from: int) -> List[Dict[str, Any]]:
         """Read logs with a log number greater than or equal to ``log_number_from``.

@@ -1050,8 +1050,6 @@ def unset_seed_in_test(request: SubRequest) -> None:
             os.environ["PYTHONHASHSEED"] = hash_seed
 
     request.addfinalizer(restore_seed)
-
-
 @pytest.mark.slow
 @parametrize_sampler_name_with_seed
 def test_reproducible_in_other_process(sampler_name: str, unset_seed_in_test: None) -> None:

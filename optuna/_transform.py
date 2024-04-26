@@ -94,7 +94,6 @@ class _SearchSpaceTransform:
 
     def transform(self, params: Dict[str, Any]) -> numpy.ndarray:
         """Transform a parameter configuration from actual values to continuous space.
-
         Args:
             params:
                 A parameter configuration to transform.

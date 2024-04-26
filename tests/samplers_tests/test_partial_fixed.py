@@ -85,7 +85,6 @@ def test_out_of_the_range_categorical() -> None:
         return x**2 + y**2
 
     fixed_y = 2
-
     # It isn't possible to fix categorical parameters as out-of-the-range value.
     # `ValueError` will occur.
     study = optuna.create_study()
