@@ -334,7 +334,6 @@ def enable_propagation() -> None:
             import logging
 
             logger = logging.getLogger()
-
             logger.setLevel(logging.INFO)  # Setup the root logger.
             logger.addHandler(logging.FileHandler("foo.log", mode="w"))
 

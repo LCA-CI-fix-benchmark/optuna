@@ -10,7 +10,6 @@ __version__ = "3.0.0b0.dev"
 
 Please temporarily remove the suffix when running this script.
 After generating an asset, the change should be reverted.
-
 If you want to generate a DB file for older versions of Optuna, you have to install it.
 I recommend you to create isolated environment using `venv` for this purpose.
 
