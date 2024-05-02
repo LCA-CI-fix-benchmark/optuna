@@ -29,20 +29,8 @@ class BaseJournalLogStorage(abc.ABC):
         Returns:
             Logs with log number greater than or equal to ``log_number_from``.
         """
-
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def append_logs(self, logs: List[Dict[str, Any]]) -> None:
-        """Append logs to the backend.
-
-        Args:
-            logs:
-                A list that contains json-serializable logs.
-        """
-
-        raise NotImplementedError
-
+import abc
+from typing import Any, Dict, List
 
 class BaseJournalLogSnapshot(abc.ABC):
     """Optional base class for Journal storages.
