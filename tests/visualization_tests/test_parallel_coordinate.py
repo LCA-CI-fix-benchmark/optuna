@@ -473,7 +473,7 @@ def test_get_parallel_coordinate_info_categorical_numeric_params() -> None:
                 is_cat=True,
                 tickvals=[0, 1, 2],
                 ticktext=["10", "20", "30"],
-            ),
+            )
         ],
         reverse_scale=True,
         target_name="Objective Value",
