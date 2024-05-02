@@ -3,7 +3,6 @@
 # `black`, `blackdoc`, and `isort`. If you pass `-n` as an option, this script checks codes
 # without updating codebase.
 
-
 missing_dependencies=()
 command -v black &> /dev/null
 if [ $? -eq 1 ] ; then
@@ -42,6 +41,7 @@ do
   esac
 done
 
+target="optuna tests benchmarks tutorial"
 target="optuna tests benchmarks tutorial"
 mypy_target="optuna tests benchmarks"
 res_all=0

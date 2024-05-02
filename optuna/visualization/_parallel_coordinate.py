@@ -294,7 +294,6 @@ def _get_parallel_coordinate_info(
         target_name=target_name,
     )
 
-
 def _get_dims_from_info(info: _ParallelCoordinateInfo) -> list[dict[str, Any]]:
     dims = [
         {
