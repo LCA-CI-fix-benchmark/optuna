@@ -138,6 +138,7 @@ def get_heartbeat_thread(trial_id: int, storage: BaseStorage) -> BaseHeartbeatTh
         assert isinstance(storage, BaseHeartbeat)
         return HeartbeatThread(trial_id, storage)
     else:
+        return None
         return NullHeartbeatThread()
 
 
