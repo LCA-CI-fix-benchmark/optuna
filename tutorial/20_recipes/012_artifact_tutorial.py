@@ -402,8 +402,8 @@ if __name__ == "__main__":
 #
 # As shown above, it is convenient to use the artifact module when performing the optimization of chemical structures with Optuna.
 # In the case of small structures or fewer trial numbers, it's fine to convert it to a string and save it directly in the RDB.
-# However, when dealing with complex structures or performing large-scale searches, it's better to save it outside the RDB to
-# avoid overloading it, such as in an external file system or AWS S3.
+# However, when dealing with complex structures or performing large-scale searches, it's better to save it outside the RDB to avoid overloading it,
+# such as in an external file system or AWS S3.
 #
 # Conclusion
 # ----------

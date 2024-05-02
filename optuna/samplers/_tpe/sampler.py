@@ -135,7 +135,6 @@ class TPESampler(BaseSampler):
             :class:`~optuna.distributions.CategoricalDistribution`.
         consider_magic_clip:
             Enable a heuristic to limit the smallest variances of Gaussians used in
-            the Parzen estimator.
         consider_endpoints:
             Take endpoints of domains into account when calculating variances of Gaussians
             in Parzen estimator. See the original paper for details on the heuristics
@@ -212,9 +211,11 @@ class TPESampler(BaseSampler):
         warn_independent_sampling:
             If this is :obj:`True` and ``multivariate=True``, a warning message is emitted when
             the value of a parameter is sampled by using an independent sampler.
+            the value of a parameter is sampled by using an independent sampler.
             If ``multivariate=False``, this flag has no effect.
         constant_liar:
-            If :obj:`True`, penalize running trials to avoid suggesting parameter configurations
+            If True, the sampler will use a constant liar strategy to balance exploration and
+            exploitation. Refer to the original TPE paper for more details on this strategy.
             nearby.
 
             .. note::

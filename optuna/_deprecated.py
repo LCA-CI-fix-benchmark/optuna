@@ -108,15 +108,13 @@ def deprecated_func(
             )
             if text is not None:
                 message += " " + text
-            warnings.warn(message, FutureWarning, stacklevel=2)
+        warnings.warn(message, FutureWarning, stacklevel=2)
 
-            return func(*args, **kwargs)
+        return func(*args, **kwargs)
 
-        return wrapper
+    return wrapper
 
-    return decorator
-
-
+return decorator
 def deprecated_class(
     deprecated_version: str,
     removed_version: str,

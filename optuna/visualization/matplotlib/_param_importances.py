@@ -140,7 +140,7 @@ def _set_bar_labels(info: _ImportancesInfo, fig: "Figure", ax: "Axes", offset: f
         text = ax.text(val, idx + offset, label, va="center")
 
         # Sometimes horizontal axis needs to be re-scaled
-        # to avoid text going over plot area.
+        # to avoid text going over the plot area.
         bbox = text.get_window_extent(renderer)
         bbox = bbox.transformed(ax.transData.inverted())
         _, plot_xmax = ax.get_xlim()
