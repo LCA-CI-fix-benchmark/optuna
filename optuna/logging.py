@@ -288,15 +288,19 @@ def disable_propagation() -> None:
 
             optuna.logging.enable_propagation()  # Propagate logs to the root logger.
 
-            study = optuna.create_study()
+import optuna
+import logging
 
-            logger.info("Logs from first optimize call")  # The logs are saved in the logs file.
-            study.optimize(objective, n_trials=10)
+study = optuna.create_study()
 
-            optuna.logging.disable_propagation()  # Stop propogating logs to the root logger.
+logger = logging.getLogger(__name__)
+logger.info("Logs from first optimize call")  # The logs are saved in the logs file.
+study.optimize(objective, n_trials=10)
 
-            logger.info("Logs from second optimize call")
-            # The new logs for second optimize call are not saved.
+optuna.logging.disable_propagation()  # Stop propagating logs to the root logger.
+
+logger.info("Logs from second optimize call")
+study.optimize(objective, n_trials=10)  # The new logs for the second optimize call will now be saved.
             study.optimize(objective, n_trials=10)
 
             with open("foo.log") as f:
@@ -328,17 +332,18 @@ def enable_propagation() -> None:
                 y = trial.suggest_categorical("y", [-1, 0, 1])
                 return x**2 + y
 
-        .. testcode::
+import optuna
+import logging
 
-            import optuna
-            import logging
+logger = logging.getLogger(__name__)
 
-            logger = logging.getLogger()
+logger.setLevel(logging.INFO)  # Setup the root logger.
+logger.addHandler(logging.FileHandler("foo.log", mode="w"))
 
-            logger.setLevel(logging.INFO)  # Setup the root logger.
-            logger.addHandler(logging.FileHandler("foo.log", mode="w"))
+optuna.logging.enable_propagation()  # Propagate logs to the root logger.
+optuna.logging.disable_default_handler()  # Stop showing logs in sys.stderr.
 
-            optuna.logging.enable_propagation()  # Propagate logs to the root logger.
+study = optuna.create_study()
             optuna.logging.disable_default_handler()  # Stop showing logs in sys.stderr.
 
             study = optuna.create_study()

@@ -135,8 +135,11 @@ class HeartbeatThread(BaseHeartbeatThread):
 
 def get_heartbeat_thread(trial_id: int, storage: BaseStorage) -> BaseHeartbeatThread:
     if is_heartbeat_enabled(storage):
-        assert isinstance(storage, BaseHeartbeat)
-        return HeartbeatThread(trial_id, storage)
+        if isinstance(storage, BaseHeartbeat):
+            return HeartbeatThread(trial_id, storage)
+        else:
+            # Handle the case where storage is not an instance of BaseHeartbeat.
+            raise ValueError("Invalid storage type for heartbeat. Expected BaseHeartbeat.")
     else:
         return NullHeartbeatThread()
 

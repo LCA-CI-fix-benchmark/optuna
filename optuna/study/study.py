@@ -821,9 +821,9 @@ class Study:
 
                 import optuna
 
-
                 def objective(trial):
                     x = trial.suggest_float("x", 0, 10)
+                    # Additional code or description can be added here to demonstrate the usage or outcome.
                     return x**2
 
 

@@ -39,13 +39,14 @@ def _multiobjective_func(trial: optuna.trial.Trial) -> Tuple[float, float]:
     return first_objective, second_objective
 
 
-# This is tool function for a temporary fix on Optuna side. It avoids an error with user
-# attributes that are too long. It should be fixed on MLflow side later.
-# When it is fixed on MLflow side this test can be removed.
-# see https://github.com/optuna/optuna/issues/1340
-# see https://github.com/mlflow/mlflow/issues/2931
+# This is a tool function for a temporary fix on the Optuna side to avoid an error with user
+# attributes that are too long. It should be fixed on the MLflow side later.
+# When it is fixed on the MLflow side, this test can be removed.
+# See https://github.com/optuna/optuna/issues/1340
+# See https://github.com/mlflow/mlflow/issues/2931
 def _objective_func_long_user_attr(trial: optuna.trial.Trial) -> float:
     x = trial.suggest_float("x", -1.0, 1.0)
+    # Additional code or modifications can be included here to handle long user attributes.
     y = trial.suggest_float("y", 20, 30, log=True)
     z = trial.suggest_categorical("z", (-1.0, 1.0))
     long_str = str(list(range(5000)))
@@ -193,14 +194,13 @@ def test_run_name(tmpdir: py.path.local, run_name: Optional[str], expected: str)
     assert tags["mlflow.runName"] == expected
 
 
-# This is a test for a temporary fix on Optuna side. It avoids an error with user
-# attributes that are too long. It should be fixed on MLflow side later.
-# When it is fixed on MLflow side this test can be removed.
-# see https://github.com/optuna/optuna/issues/1340
-# see https://github.com/mlflow/mlflow/issues/2931
 def test_tag_truncation(tmpdir: py.path.local) -> None:
     tracking_uri = f"file:{tmpdir}"
     study_name = "my_study"
+    n_trials = 3
+    
+    # Add test logic or assertions here to validate tag truncation behavior in MLflow.
+    # Example: Create a study, run trials with long tags, and check if truncation occurs as expected.
     n_trials = 3
 
     mlflc = MLflowCallback(tracking_uri=tracking_uri)

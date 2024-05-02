@@ -24,10 +24,10 @@ class PartialFixedSampler(BaseSampler):
 
             import optuna
 
-
             def objective(trial):
                 x = trial.suggest_float("x", -1, 1)
                 y = trial.suggest_int("y", -1, 1)
+                # Additional code or description can be added here to demonstrate the usage or outcome.
                 return x**2 + y
 
 
