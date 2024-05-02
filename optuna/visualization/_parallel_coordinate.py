@@ -266,8 +266,8 @@ def _get_parallel_coordinate_info(
 
     if numeric_cat_params_indices:
         dims.insert(0, dim_objective)
-        # np.lexsort consumes the sort keys the order from back to front.
-        # So the values of parameters have to be reversed the order.
+        # np.lexsort consumes the sort keys in the order from back to front.
+        # So the values of parameters have to be reversed in order.
         idx = np.lexsort([dims[index].values for index in numeric_cat_params_indices][::-1])
         updated_dims = []
         for dim in dims:
