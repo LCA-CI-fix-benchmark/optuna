@@ -642,6 +642,17 @@ def _split_trials(
     return below_trials, above_trials
 
 
+def _get_infeasible_trial_score(trial: FrozenTrial) -> float:
+    """Compute the infeasibility score for a given trial.
+
+    The score is the maximum of the constraint violations.
+    """
+    if trial.constraints is not None:
+        return max(0.0, *trial.constraints)
+    else:
+        return 0.0
+
+
 def _split_complete_trials(
     trials: Sequence[FrozenTrial], study: Study, n_below: int
 ) -> tuple[list[FrozenTrial], list[FrozenTrial]]:
