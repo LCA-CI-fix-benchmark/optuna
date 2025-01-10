@@ -316,6 +316,10 @@ class TPESampler(BaseSampler):
         self._constraints_func = constraints_func
 
         if multivariate:
+            if n_startup_trials < 20:
+                warnings.warn(
+                    "``n_startup_trials`` is recommended to be at least 20 for multivariate TPE."
+                )
             warnings.warn(
                 "``multivariate`` option is an experimental feature."
                 " The interface can change in the future.",
@@ -450,13 +454,32 @@ class TPESampler(BaseSampler):
         self, trials: list[FrozenTrial], search_space: dict[str, BaseDistribution]
     ) -> dict[str, np.ndarray]:
         values: dict[str, list[float]] = {param_name: [] for param_name in search_space}
+        retry_count = 0
+        max_retries = 3
         for trial in trials:
-            if all((param_name in trial.params) for param_name in search_space):
+            if retry_count >= max_retries:
+                break
+            try:
                 for param_name in search_space:
-                    param = trial.params[param_name]
-                    distribution = trial.distributions[param_name]
-                    values[param_name].append(distribution.to_internal_repr(param))
-        return {k: np.asarray(v) for k, v in values.items()}
+                    if param_name in trial.params:
+                        param = trial.params[param_name]
+                        distribution = trial.distributions[param_name]
+                        values[param_name].append(distribution.to_internal_repr(param))
+                    else:
+                        retry_count += 1
+                        break
+            except (KeyError, TypeError):
+                # Ignore trials with missing parameters.
+                retry_count += 1
+                continue
+
+        if retry_count >= max_retries:
+            _logger.warning(
+                f"Failed to parse parameters from trials after {max_retries} retries. "
+                "Some trials may be missing required parameters."
+            )
+
+        return {k: np.asarray(v) for k, v in values.items() if v}
 
     def _sample(
         self, study: Study, trial: FrozenTrial, search_space: Dict[str, BaseDistribution]
