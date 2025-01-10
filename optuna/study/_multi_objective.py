@@ -1,13 +1,16 @@
 from __future__ import annotations
 
 from collections import defaultdict
-from typing import List, Optional, Sequence
+from typing import list
+from typing import optional
+from typing import sequence
 
 import numpy as np
 
 import optuna
-from optuna.study._study_direction import StudyDirection
-from optuna.trial import FrozenTrial, TrialState
+from optuna.study._study_direction import studydirection
+from optuna.trial import frozentrial
+from optuna.trial import trialstate
 
 
 def _get_pareto_front_trials_2d(
