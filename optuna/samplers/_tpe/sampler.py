@@ -402,6 +402,15 @@ class TPESampler(BaseSampler):
         else:
             return self._sample_relative(study, trial, search_space)
 
+    def _get_max_attempts(self, study: Study) -> int:
+        """Return the maximum number of attempts for a trial."""
+        return 3
+
+    def sample_independent(
+        self, study: Study, trial: FrozenTrial, param_name: str, param_distribution: BaseDistribution
+    ) -> Any:
+        return self._sample_with_retry(study, trial, param_name, param_distribution)
+
     def _sample_relative(
         self, study: Study, trial: FrozenTrial, search_space: Dict[str, BaseDistribution]
     ) -> Dict[str, Any]:
@@ -416,6 +425,20 @@ class TPESampler(BaseSampler):
 
         return self._sample(study, trial, search_space)
 
+    def _sample_with_retry(
+        self, study: Study, trial: FrozenTrial, param_name: str, param_distribution: BaseDistribution
+    ) -> Any:
+        max_attempts = self._get_max_attempts(study)
+        for attempt in range(max_attempts):
+            try:
+                return self._random_sampler.sample_independent(
+                    study, trial, param_name, param_distribution
+                )
+            except (ValueError, TypeError) as e:
+                if attempt == max_attempts - 1:
+                    raise e
+                _logger.info(f"Error while sampling '{param_name}': {e}. Retrying...")
+
     def sample_independent(
         self,
         study: Study,
@@ -426,6 +449,25 @@ class TPESampler(BaseSampler):
         states = (TrialState.COMPLETE, TrialState.PRUNED)
         trials = study._get_trials(deepcopy=False, states=states, use_cache=True)
 
+        return self._sample_with_retry(study, trial, param_name, param_distribution)
+
+    def _get_max_attempts(self, study: Study) -> int:
+        """Return the maximum number of attempts for a trial."""
+        return 3
+
+    def sample_independent(
+        self, study: Study, trial: FrozenTrial, param_name: str, param_distribution: BaseDistribution
+    ) -> Any:
+        max_attempts = self._get_max_attempts(study)
+        for attempt in range(max_attempts):
+            try:
+                return self._random_sampler.sample_independent(
+                    study, trial, param_name, param_distribution
+                )
+            except (ValueError, TypeError) as e:
+                if attempt == max_attempts - 1:
+                    raise e
+                _logger.info(f"Error while sampling '{param_name}': {e}. Retrying...")
         # If the number of samples is insufficient, we run random trial.
         if len(trials) < self._n_startup_trials:
             return self._random_sampler.sample_independent(
