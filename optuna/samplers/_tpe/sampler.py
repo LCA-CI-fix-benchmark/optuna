@@ -559,6 +559,16 @@ class TPESampler(BaseSampler):
 
         Returns:
             A dictionary containing the default parameters of hyperopt.
+            The dictionary keys are:
+
+            - ``consider_prior`` (:obj:`bool`): Whether to consider prior when sampling.
+            - ``prior_weight`` (:obj:`float`): The weight for prior.
+            - ``consider_magic_clip`` (:obj:`bool`): Whether to use magic clip.
+            - ``consider_endpoints`` (:obj:`bool`): Whether to use endpoint heuristics.
+            - ``n_startup_trials`` (:obj:`int`): The number of initial trials to use for random sampling before TPE.
+            - ``n_ei_candidates`` (:obj:`int`): The number of candidates for expected improvement calculation.
+            - ``gamma`` (:obj:`Callable[[int], int]`): Function to determine the number of trials for density estimation.
+            - ``weights`` (:obj:`Callable[[int], np.ndarray]`): Function to determine trial weights during sampling.
 
         """
 
