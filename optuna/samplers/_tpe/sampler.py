@@ -647,6 +647,25 @@ def _split_complete_trials(
 ) -> tuple[list[FrozenTrial], list[FrozenTrial]]:
     n_below = min(n_below, len(trials))
     if len(study.directions) <= 1:
+        # Single-objective optimization
+        directions = study.directions[0]
+        values = np.asarray([t.values[0] for t in trials])
+        indices = np.array([i for i in range(len(values))])
+        
+        if directions == StudyDirection.MINIMIZE:
+            sorted_indices = np.argsort(values)
+        else:
+            sorted_indices = np.argsort(-values)
+            
+        below = sorted_indices[:n_below]
+        above = sorted_indices[n_below:]
+        return (
+            [trials[i] for i in below],
+            [trials[i] for i in above],
+        )
+    else:
+        # Multi-objective optimization case handled by existing code
+        return _split_multiobjective_trials(trials, study, n_below) 1:
         return _split_complete_trials_single_objective(trials, study, n_below)
     else:
         return _split_complete_trials_multi_objective(trials, study, n_below)
