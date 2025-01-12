@@ -643,10 +643,30 @@ def _split_trials(
 
 
 def _split_complete_trials(
-    trials: Sequence[FrozenTrial], study: Study, n_below: int
+    trials: list[FrozenTrial], study: Study, n_below: int
 ) -> tuple[list[FrozenTrial], list[FrozenTrial]]:
     n_below = min(n_below, len(trials))
-    if len(study.directions) <= 1:
+    if len(study.directions) == 1:
+        below_trials = trials[:n_below]
+        above_trials = trials[n_below:]
+    else:
+        indices = [trial.number for trial in trials]
+        values = np.array([trial.values for trial in trials])
+        assert len(indices) == len(trials)
+        assert values.shape == (len(trials), len(study.directions))
+        assert len(trials) == len(set(indices))
+        ranks = _calculate_nondomination_rank(values, n_below)
+        below_mask = (ranks < math.inf) & (ranks != -1)
+        assert np.sum(below_mask) == n_below
+        below_indices = np.array(indices)[below_mask]
+        above_indices = set(indices) - set(below_indices)
+        below_trials = [trial for trial in trials if trial.number in below_indices]
+        above_trials = [trial for trial in trials if trial.number in above_indices]
+
+    assert len(below_trials) == n_below
+    assert len(below_trials) + len(above_trials) == len(trials)
+
+    return below_trials, above_trials1:
         return _split_complete_trials_single_objective(trials, study, n_below)
     else:
         return _split_complete_trials_multi_objective(trials, study, n_below)
