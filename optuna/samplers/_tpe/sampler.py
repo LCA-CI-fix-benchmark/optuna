@@ -647,6 +647,28 @@ def _split_complete_trials(
 ) -> tuple[list[FrozenTrial], list[FrozenTrial]]:
     n_below = min(n_below, len(trials))
     if len(study.directions) <= 1:
+        below_trials = list(sorted(trials, key=lambda t: cast(float, t.value)))[:n_below]
+        above_trials = list(sorted(trials, key=lambda t: cast(float, t.value)))[n_below:]
+    else:
+        loss_vals = np.array(
+            [
+                _normalize_values(study.directions, trial.values)
+                for trial in trials
+                if trial.values is not None
+            ]
+        )
+        if n_below == len(loss_vals):
+            ranks = np.zeros(len(loss_vals))
+        elif n_below == 0:
+            ranks = np.ones(len(loss_vals))
+        else:
+            ranks = _calculate_nondomination_rank(loss_vals, n_below)
+        below_mask = ranks < np.max(ranks[ranks < np.inf])
+        assert len(below_mask) == len(trials)
+        below_trials = [trial for trial, is_below in zip(trials, below_mask) if is_below]
+        above_trials = [trial for trial, is_below in zip(trials, below_mask) if not is_below]
+
+    return below_trials, above_trials 1:
         return _split_complete_trials_single_objective(trials, study, n_below)
     else:
         return _split_complete_trials_multi_objective(trials, study, n_below)
