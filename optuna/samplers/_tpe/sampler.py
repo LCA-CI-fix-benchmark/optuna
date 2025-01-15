@@ -87,17 +87,20 @@ class TPESampler(BaseSampler):
 
         .. testcode::
 
-            import optuna
-            from optuna.samplers import TPESampler
+            import optuna  # Import optuna library
+            from optuna.samplers import TPESampler  # Import the TPESampler specifically to use
 
 
             def objective(trial):
                 x = trial.suggest_float("x", -10, 10)
+                # The objective function to minimize: x^2
                 return x**2
 
 
-            study = optuna.create_study(sampler=TPESampler())
-            study.optimize(objective, n_trials=10)
+            # Define a study object and perform optimization with TPESampler
+            sampler = TPESampler()
+            study = optuna.create_study(sampler=sampler)
+            study.optimize(objective, n_trials=10)  # Run 10 trials only
 
     .. note::
         For `v2.9.0 <https://github.com/optuna/optuna/releases/tag/v2.9.0>`_ or later,
