@@ -85,6 +85,33 @@ class TPESampler(BaseSampler):
     Example:
         An example of a single-objective optimization is as follows:
 
+    Attributes:
+        consider_prior (bool): Whether to impose a Gaussian prior on the Parzen estimator for
+            added stability.
+        prior_weight (float): The weight of the prior in optimization calculations.
+        consider_magic_clip (bool): Whether to enable heuristic clamping of Gaussian variances
+            when using the Parzen estimator.
+        consider_endpoints (bool): Whether to include domain endpoints in Parzen variance
+            calculations.
+        n_startup_trials (int): Number of initial trials for which random sampling is used
+            instead of the TPE method.
+        n_ei_candidates (int): The number of EI (expected improvement) candidates sampled at
+            each iteration.
+        gamma (Callable[[int], int]): A function determining the number of trials used to
+            compute sample densities for good trials.
+        weights (Callable[[int], np.ndarray]): A function assigning importance weights to
+            trials based on order.
+        seed (Optional[int]): The random number seed for repeatable runs.
+        multivariate (bool): Whether to use the multivariate TPE for joint sampling.
+        group (bool): Enable decomposition into grouped subspaces for multivariate sampling.
+        constant_liar (bool): Whether to avoid sampling parameter configurations near those
+            under evaluation by marking unfinished trials as "constant liars".
+        constraints_func (Optional[Callable[[FrozenTrial], Sequence[float]]]): A function
+            defining constraints for trial evaluations.
+        categorical_distance_func (Optional[dict[str, Callable]]): A dictionary mapping
+            categorical parameter names to distance functions. Used to guide sampling
+            based on proximity to optimal categorical values.
+
         .. testcode::
 
             import optuna
