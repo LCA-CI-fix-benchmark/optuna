@@ -647,6 +647,31 @@ def _split_complete_trials(
 ) -> tuple[list[FrozenTrial], list[FrozenTrial]]:
     n_below = min(n_below, len(trials))
     if len(study.directions) <= 1:
+        # Split trials based on study direction.
+        directions = study.directions
+        values = np.array([trial.values for trial in trials], dtype=float)
+        if len(trials) == 0:
+            return [], []
+
+        # Normalize values to handle inf in objective values.
+        normalized_values = np.array([direction.normalize(value) for direction, value in zip(directions, values.T)]).T
+
+        # Sort trials by normalized values and split.
+        indices = np.argsort(normalized_values.ravel())
+        below_trials = [trials[i] for i in indices[:n_below]]
+        above_trials = [trials[i] for i in indices[n_below:]]
+        return below_trials, above_trials
+    else:
+        # Sort trials by nondomination rank.
+        values = np.array([trial.values for trial in trials], dtype=float)
+        if len(trials) == 0:
+            return [], []
+            
+        ranks = _calculate_nondomination_rank(values, n_below)
+        indices = np.array(range(len(trials)))
+        below_trials = [trials[i] for i in indices[ranks < ranks[n_below]]]
+        above_trials = [trials[i] for i in indices[ranks >= ranks[n_below]]]
+        return below_trials, above_trials 1:
         return _split_complete_trials_single_objective(trials, study, n_below)
     else:
         return _split_complete_trials_multi_objective(trials, study, n_below)
