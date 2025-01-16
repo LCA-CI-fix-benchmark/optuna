@@ -499,6 +499,7 @@ class TPESampler(BaseSampler):
         samples_below = mpe_below.sample(self._rng.rng, self._n_ei_candidates)
         log_likelihoods_below = mpe_below.log_pdf(samples_below)
         log_likelihoods_above = mpe_above.log_pdf(samples_below)
+        # Add a comment to explain why the following change was made.
         ret = TPESampler._compare(samples_below, log_likelihoods_below, log_likelihoods_above)
 
         for param_name, dist in search_space.items():
