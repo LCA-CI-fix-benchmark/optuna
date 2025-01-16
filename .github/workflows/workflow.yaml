@@ -1,20 +1,15 @@
 name: Checks
 
-on:
-  push:
-    branches:
-      - master
-  pull_request: {}
-  schedule:
-    - cron: '0 23 * * SUN-THU'
-
+on: push
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/master' && github.run_number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/master' && github.run_number
+    || github.ref }}
   cancel-in-progress: true
 
 jobs:
   checks:
-    if: (github.event_name == 'schedule' && github.repository == 'optuna/optuna') || (github.event_name != 'schedule')
+    if: (github.event_name == 'schedule' && github.repository == 'optuna/optuna')
+      || (github.event_name != 'schedule')
     runs-on: ubuntu-latest
 
     steps:
@@ -47,3 +42,7 @@ jobs:
       run: mypy .
     - name: blackdoc
       run: blackdoc . --check --diff
+
+env:
+  PIP_INDEX_URL: https://pypi-wayback-449168051873.europe-west3.run.app/2023-12-22
+  UV_INDEX_URL: https://pypi-wayback-449168051873.europe-west3.run.app/2023-12-22
