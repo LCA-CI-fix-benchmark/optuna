@@ -647,6 +647,43 @@ def _split_complete_trials(
 ) -> tuple[list[FrozenTrial], list[FrozenTrial]]:
     n_below = min(n_below, len(trials))
     if len(study.directions) <= 1:
+        # Single-objective optimization
+        vals = np.asarray([t.value for t in trials], dtype=float)
+        indices = np.array([i for i in range(len(vals))])
+        
+        # For minimize direction, lower values are better
+        if study.direction == StudyDirection.MINIMIZE:
+            sorted_idx = np.argsort(vals)
+        else:
+            sorted_idx = np.argsort(-vals)
+            
+        below_trials = [trials[i] for i in sorted_idx[:n_below]]
+        above_trials = [trials[i] for i in sorted_idx[n_below:]]
+        return below_trials, above_trials
+        
+    else:
+        # Multi-objective optimization 
+        values = np.asarray([[t.values[i] for i in range(len(study.directions))] for t in trials])
+        
+        # Convert to minimization problem
+        normalized_vals = np.zeros_like(values)
+        for i, d in enumerate(study.directions):
+            if d == StudyDirection.MAXIMIZE:
+                normalized_vals[:, i] = -values[:, i]
+            else:
+                normalized_vals[:, i] = values[:, i]
+                
+        ranks = _calculate_nondomination_rank(normalized_vals, n_below)
+        below_trials = []
+        above_trials = []
+        
+        for trial, rank in zip(trials, ranks):
+            if rank < 0:
+                above_trials.append(trial)
+            else:
+                below_trials.append(trial)
+                
+        return below_trials, above_trials 1:
         return _split_complete_trials_single_objective(trials, study, n_below)
     else:
         return _split_complete_trials_multi_objective(trials, study, n_below)
